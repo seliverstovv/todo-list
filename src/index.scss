@@ -1,0 +1,50 @@
+@import './scss/global/normalize';
+@import './scss/global/fonts';
+@import './scss/variables/colors.scss';
+@import './scss/variables/media-queries.scss';
+
+//global ui styles
+input, button {
+  font-size: 2rem;
+  padding: .4rem .8rem;
+  border-radius: .4rem;
+  border: 1px solid var(--gray);
+  @include mq-animation() {
+    transition-property: background-color, border;
+    transition-timing-function: ease-in-out;
+    transition-duration: .1s;
+  }
+}
+
+input {
+  &:focus {
+    outline: none;
+    border: 1px solid var(--turquoise);
+    box-shadow: 0 0 1px 1px var(--turquoise);
+  }
+}
+
+svg {
+  @include mq-animation() {
+    transition-property: fill;
+    transition-timing-function: ease-in-out;
+    transition-duration: .1s;
+  }
+}
+
+h1 {
+  font-size: 3.6rem;
+  font-weight: bold;
+  color: var(--dark);
+}
+
+h2 {
+  font-size: 2.8rem;
+  font-weight: bold;
+  color: var(--gray)
+}
+
+p {
+  font-size: 2.4rem;
+  color: var(--dark);
+}

@@ -1,0 +1,165 @@
+@import '../../scss/variables/media-queries.scss';
+
+.item {
+  display: flex;
+
+  @include mq-to($hands-max) {
+    flex-flow: column;
+  }
+
+  @include mq-from($hands-min) {
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  padding: .8rem 0;
+  border-bottom: 1px solid var(--gray);
+
+  span {
+    display: flex;
+
+    @include mq-from($hands-min) {
+      align-self: flex-start;
+    }
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+.text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  @include mq-to($hands-max) {
+    margin-bottom: 1.2rem;
+    max-width: calc(100vw - 3.2rem);
+  }
+
+  @include mq-from($hands-min) {
+    margin-right: 1.2rem;
+    max-width: 550px;
+  }
+
+  &Done {
+    text-decoration: line-through;
+  }
+}
+
+.urgently {
+  color: var(--orange)
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: .4rem;
+  background-color: var(--light);
+  cursor: pointer;
+
+  @include mq-to($hands-max) {
+    flex: 1 0 auto;
+  }
+
+  @include mq-from($hands-min) {
+    flex: 0 0 auto;
+    width: 4rem;
+  }
+
+  &:not(:last-of-type) {
+    margin-right: .8rem;
+  }
+
+  &:focus {
+    outline: none;
+    border: 1px solid var(--turquoise);
+    box-shadow: 0 0 1px 2px var(--turquoise);
+  }
+
+  svg {
+    
+    @include mq-to($hands-max) {
+      height: 1.8rem;
+    }
+    @include mq-from($hands-min) {
+      height: 2.8rem;
+    }
+  }
+}
+
+// done btn styles
+
+@mixin doneState {
+  background-color: var(--green);
+  border: 1px solid var(--green);
+  svg {
+    fill: var(--light);
+  }
+}
+
+.done {
+  border: 1px solid var(--green);
+  svg {
+    fill: var(--green);
+  }
+
+  @include mq-hover() {
+    @include doneState();
+  }
+
+  &Active {
+    @include doneState();
+  }
+}
+
+// important btn styles
+
+@mixin importantState {
+  background-color: var(--orange);
+  border: 1px solid var(--orange);
+  svg {
+    fill: var(--light);
+  }
+}
+
+.important {
+  border: 1px solid var(--orange);
+  svg {
+    fill: var(--orange);
+  }
+
+  @include mq-hover() {
+    @include importantState();
+  }
+
+  &Active {
+    @include importantState();
+  }
+}
+
+// delete btn styles
+
+@mixin deleteState {
+    background-color: var(--red);
+    border: 1px solid var(--red);
+    svg {
+      fill: var(--light);
+    }
+}
+
+.delete {
+  border: 1px solid var(--red);
+  svg {
+    fill: var(--red);
+  }
+
+  @include mq-hover() {
+   @include deleteState();
+  }
+
+  &Active{
+    @include deleteState();
+  }
+}
