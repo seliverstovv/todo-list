@@ -12,21 +12,22 @@ import {
   REGISTER,
 } from "redux-persist"
 
-const rootReducer = combineReducers({
-  todoReducer,
-})
-
 const persistConfig = {
-  key: "rootReducer",
+  key: "todoReducer",
   storage,
+  blacklist: ["todoTitle", "todoDescription", "searchValue", "isVisibleAddTask", "isVisibleRemoveAll"],
 }
 
-const persistedReducer = persistReducer(persistConfig, rootReducer)
+const persistedtodoReducer = persistReducer(persistConfig, todoReducer)
+
+const rootReducer = combineReducers({
+  todoReducer: persistedtodoReducer,
+})
 
 const createStore = () => {
   return configureStore({
     devTools: process.env.NODE_ENV === "development",
-    reducer: persistedReducer,
+    reducer: rootReducer,
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({
         serializableCheck: {

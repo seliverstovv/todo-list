@@ -1,10 +1,11 @@
-import emotionReset from "emotion-reset"
+/** @jsxImportSource @emotion/react */
 import { Global, css, useTheme } from "@emotion/react"
 
 import Header from "components/Header"
-import SearchPanel from "components/SearchPanel"
+
 import TodoList from "components/TodoList"
-import AddPanel from "components/AddPanel"
+import Controls from "components/Controls"
+import resetStyles from "UI/resetStyles"
 
 const App = () => {
   const { colors } = useTheme()
@@ -12,7 +13,7 @@ const App = () => {
     <>
       <Global
         styles={css`
-          ${emotionReset}
+          ${resetStyles}
           html {
             font-size: 62.5%;
             font-family: "Roboto", sans-serif;
@@ -23,10 +24,15 @@ const App = () => {
           }
         `}
       />
-      <main>
+      <main
+        css={css`
+          max-width: 85rem;
+          padding: 2rem 3rem;
+          margin: 0 auto;
+        `}
+      >
         <Header />
-        <SearchPanel />
-        <AddPanel />
+        <Controls />
         <TodoList />
       </main>
     </>

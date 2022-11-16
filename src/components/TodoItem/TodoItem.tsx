@@ -3,7 +3,7 @@ import Typography from "UI/Typography"
 import { useAppDispath } from "store/hooks"
 import { toggleBooleanField, removeItem } from "features/todoSlice"
 import { TodoItemType } from "features/types"
-import BorderButton from "UI/BorderButton"
+import BorderButton from "UI/Buttons/BorderButton"
 import { css, useTheme } from "@emotion/react"
 import { ReactComponent as DoneIcon } from "./icons/done.svg"
 import { ReactComponent as ImportantIcon } from "./icons/important.svg"
@@ -56,7 +56,7 @@ const TodoItem = ({ id, title, done, important }: TodoItemType) => {
       </Typography>
 
       <span className="buttons">
-        <BorderButton isActive={done} kind="success" onClick={onMarkDone}>
+        <BorderButton isActive={done} kind="success" onClick={onMarkDone} isToggle>
           <DoneIcon />
         </BorderButton>
 
@@ -65,6 +65,7 @@ const TodoItem = ({ id, title, done, important }: TodoItemType) => {
           className="important"
           kind="warn"
           onClick={onMarkImportant}
+          isToggle
         >
           <ImportantIcon />
         </BorderButton>
