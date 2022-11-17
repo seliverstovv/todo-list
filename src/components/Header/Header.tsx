@@ -16,7 +16,7 @@ const Header = () => {
 
   return (
     <header css={styles}>
-      <Typography tag="h1" size="xxl">
+      <Typography tag="h2" size="xxl">
         My Todo List
       </Typography>
       <Typography tag="h3" size="xl">

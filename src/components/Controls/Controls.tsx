@@ -4,6 +4,7 @@ import { useAppDispath, useAppSelector } from "store/hooks"
 import { toggleVisibleModal } from "features/todoSlice"
 import { todoItemsCountsSelector } from "features/selectors"
 import BorderButton from "UI/Buttons/BorderButton"
+import Typography from "UI/Typography"
 import Filter from "components/Filters"
 import Search from "components/Search"
 import TaskForm from "components/TaskForm"
@@ -27,7 +28,7 @@ const Controls = () => {
   `
 
   const visibleAddTaskHandler = () => {
-    dispatch(toggleVisibleModal("isVisibleAddTask"))
+    dispatch(toggleVisibleModal("isVisibleTaskForm"))
   }
 
   const visibleRemoveAllHandler = () => {
@@ -47,6 +48,15 @@ const Controls = () => {
       </div>
 
       <div css={controlStyles}>
+        <Typography
+          size="xxxl"
+          tag="h1"
+          css={css`
+            margin-right: auto;
+          `}
+        >
+          Tasks:
+        </Typography>
         <BorderButton
           css={css`
             margin-right: 1rem;

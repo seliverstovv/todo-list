@@ -1,18 +1,34 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { FilterTypes, TodoItemType, TodoStateType, UpdatedKeysType, VisibleModalKeysType } from "./types"
+import getTodosThunk from "./asyncThunk"
+import {
+  EditableTaskType,
+  FilterTypes,
+  ItemIdType,
+  TodoItemType,
+  TodoStateType,
+  UpdatedKeysType,
+  VisibleModalKeysType,
+} from "./types"
 
 const initialState: TodoStateType = {
   todoItems: [],
-  todoTitle: "",
-  todoDescription: "",
   searchValue: "",
   filterType: "all",
 
-  isVisibleAddTask: false,
+  isLoading: false,
+  error: null,
+
+  isVisibleTaskForm: false,
   isVisibleRemoveAll: false,
+
+  editableTask: {
+    id: null,
+    title: "",
+    body: "",
+  },
 }
 
-type ToggleBooleanAction = PayloadAction<{ id: string; key: keyof UpdatedKeysType }>
+type ToggleBooleanAction = PayloadAction<{ id: ItemIdType; key: keyof UpdatedKeysType }>
 type ToggleVisibleModalAction = PayloadAction<keyof VisibleModalKeysType>
 
 const todoSlice = createSlice({
@@ -20,10 +36,10 @@ const todoSlice = createSlice({
   initialState,
   reducers: {
     setItem(state, { payload }: PayloadAction<TodoItemType>) {
-      state.todoItems.push(payload)
+      state.todoItems.unshift(payload)
     },
 
-    removeItem(state, { payload }: PayloadAction<string>) {
+    removeItem(state, { payload }: PayloadAction<ItemIdType>) {
       const prevState = state.todoItems
       state.todoItems = prevState.filter(({ id }) => id !== payload)
     },
@@ -32,19 +48,15 @@ const todoSlice = createSlice({
       state.todoItems = []
     },
 
+    setEditableTask(state, { payload }: PayloadAction<EditableTaskType>) {
+      state.editableTask = payload
+    },
+
     toggleBooleanField(state, { payload }: ToggleBooleanAction) {
       const { id, key } = payload
       const index = state.todoItems.findIndex((item) => item.id === id)
       const oldState = state.todoItems[index][key]
       state.todoItems[index][key] = !oldState
-    },
-
-    setTodoTitle(state, { payload }: PayloadAction<string>) {
-      state.todoTitle = payload
-    },
-
-    setTodoDescription(state, { payload }: PayloadAction<string>) {
-      state.todoDescription = payload
     },
 
     setSearchValue(state, { payload }: PayloadAction<string>) {
@@ -60,6 +72,19 @@ const todoSlice = createSlice({
       state[payload] = !oldState
     },
   },
+  extraReducers: (builder) =>
+    builder
+      .addCase(getTodosThunk.fulfilled, (state, action) => {
+        state.todoItems = action.payload
+        state.isLoading = false
+      })
+      .addCase(getTodosThunk.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(getTodosThunk.rejected, (state, action) => {
+        state.error = action.error
+        state.isLoading = false
+      }),
 })
 
 export const {
@@ -67,8 +92,7 @@ export const {
   toggleBooleanField,
   removeItem,
   removeAll,
-  setTodoTitle,
-  setTodoDescription,
+  setEditableTask,
   setSearchValue,
   setFilterType,
   toggleVisibleModal,

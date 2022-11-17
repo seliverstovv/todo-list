@@ -47,6 +47,7 @@ const AnimateItem = ({
   useLockedBody(isOpened, "root")
 
   const overlay = css`
+    position: fixed;
     background-color: black;
     opacity: 0.9;
     width: 100%;
@@ -55,7 +56,7 @@ const AnimateItem = ({
   `
 
   const content = css`
-    position: absolute;
+    position: fixed;
     transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;

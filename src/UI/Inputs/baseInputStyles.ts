@@ -1,7 +1,8 @@
 import { css } from "@emotion/react"
 import { ThemeProps } from "theme"
+import { BaseInputProps } from "./types"
 
-export default ({ theme }: ThemeProps) => {
+export default ({ theme, error }: ThemeProps & BaseInputProps) => {
   return css`
     & {
       display: block;
@@ -38,6 +39,16 @@ export default ({ theme }: ThemeProps) => {
 
       .input:focus + .label {
         top: 0;
+      }
+
+      .placeholder .input {
+        ${error && `border: 1px solid ${theme.colors.primary.accent.b};`}
+      }
+
+      .error {
+        align-self: flex-end;
+        margin-top: 0.8rem;
+        ${error && `color: ${theme.colors.primary.accent.b};`}
       }
     }
   `

@@ -1,14 +1,19 @@
 import { createSelector } from "@reduxjs/toolkit"
 import { RootState } from "store"
 
+export const loadingSateSelector = ({ todoReducer }: RootState) => ({
+  isLoading: todoReducer.isLoading,
+  error: todoReducer.error,
+})
+
 export const todoItemsSelector = ({ todoReducer }: RootState) => todoReducer.todoItems
-export const todoTitleSelector = ({ todoReducer }: RootState) => todoReducer.todoTitle
-export const todoDescriptionSelector = ({ todoReducer }: RootState) => todoReducer.todoDescription
 export const searchValueSelector = ({ todoReducer }: RootState) => todoReducer.searchValue
 export const filterTypeSelector = ({ todoReducer }: RootState) => todoReducer.filterType
 
-export const isVisibleAddTaskSelector = ({ todoReducer }: RootState) => todoReducer.isVisibleAddTask
+export const isVisibleTaskFormSelector = ({ todoReducer }: RootState) => todoReducer.isVisibleTaskForm
 export const isVisibleRemoveAllSelector = ({ todoReducer }: RootState) => todoReducer.isVisibleRemoveAll
+
+export const editableTaskSelector = ({ todoReducer }: RootState) => todoReducer.editableTask
 
 export const todoItemsCountsSelector = createSelector([todoItemsSelector], (items) => {
   const length = items.length

@@ -1,7 +1,8 @@
 import styled from "@emotion/styled"
+import Typography from "UI/Typography"
 import styles from "./styles"
 import baseStyles from "../baseInputStyles"
-import { TextInputProps } from "./types"
+import { TextInputProps } from "../types"
 
 const TextInput = ({
   value,
@@ -9,14 +10,16 @@ const TextInput = ({
   label,
   icon,
   className,
+  name,
+  error,
   disabled = false,
-  error = null,
 }: TextInputProps) => {
   return (
     <label className={className}>
       <div className="placeholder">
         {icon && <span className="icon">{icon}</span>}
         <input
+          name={name}
           value={value}
           onChange={onChange}
           autoComplete="off"
@@ -24,8 +27,13 @@ const TextInput = ({
           disabled={disabled}
           className="input"
         />
-        <span className="label">{(error && `${label}: ${error}`) || label}</span>
+        <span className="label">{label}</span>
       </div>
+      {error && (
+        <Typography tag="span" className="error">
+          {error}
+        </Typography>
+      )}
     </label>
   )
 }

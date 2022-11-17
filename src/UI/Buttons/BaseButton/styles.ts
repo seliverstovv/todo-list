@@ -5,6 +5,16 @@ import { BaseButtonProps } from "UI/Buttons/baseButtonTypes"
 export default ({ theme, direction = "row", size = "large" }: ThemeProps & BaseButtonProps) => {
   const getSizeStyles = () => {
     switch (size) {
+      case "mini":
+        return css`
+          width: 4rem;
+          height: 4rem;
+          padding: 0.2rem;
+          svg {
+            width: 100%;
+            height: 2rem;
+          }
+        `
       case "small":
         return css`
           font-size: ${theme.fontSizes.m};
@@ -29,13 +39,12 @@ export default ({ theme, direction = "row", size = "large" }: ThemeProps & BaseB
     & {
       display: flex;
       justify-content: center;
+      align-items: center;
       cursor: pointer;
       flex-flow: ${direction};
       border-radius: ${theme.radius.button};
       ${getSizeStyles()}
       &:disabled {
-        background-color: ${theme.colors.secondary.b};
-        border: 1px solid ${theme.colors.secondary.b};
         pointer-events: none;
       }
     }

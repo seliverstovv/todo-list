@@ -1,8 +1,8 @@
 import { css } from "@emotion/react"
 import { ThemeProps } from "theme"
-import { TextInputProps } from "./types"
+import { TextInputProps } from "../types"
 
-export default ({ theme, value, icon, error }: ThemeProps & TextInputProps) => {
+export default ({ value, icon, withError }: ThemeProps & TextInputProps) => {
   const isEmptyValue = value?.trim().length === 0
 
   const getIconStyles = () => {
@@ -25,6 +25,8 @@ export default ({ theme, value, icon, error }: ThemeProps & TextInputProps) => {
 
   return css`
     & {
+      position: relative;
+      padding-bottom: ${withError ? "2.2rem" : "0"};
       .label {
         transform: translateY(-50%);
         top: ${isEmptyValue ? "50%" : "0"};
@@ -33,7 +35,11 @@ export default ({ theme, value, icon, error }: ThemeProps & TextInputProps) => {
 
       .placeholder .input {
         padding-left: ${icon ? "3.2rem" : "1rem"};
-        ${error && `border: 1px solid ${theme.colors.primary.accent.b};`}
+      }
+
+      .error {
+        position: absolute;
+        bottom: 0;
       }
 
       ${getIconStyles()}

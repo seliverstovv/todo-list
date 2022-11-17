@@ -15,7 +15,15 @@ import {
 const persistConfig = {
   key: "todoReducer",
   storage,
-  blacklist: ["todoTitle", "todoDescription", "searchValue", "isVisibleAddTask", "isVisibleRemoveAll"],
+  blacklist: [
+    "todoTitle",
+    "todoDescription",
+    "searchValue",
+    "isVisibleAddTask",
+    "isVisibleRemoveAll",
+    "isLoading",
+    "error",
+  ],
 }
 
 const persistedtodoReducer = persistReducer(persistConfig, todoReducer)

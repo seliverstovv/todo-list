@@ -1,27 +1,40 @@
-export type CategoryTypes = "home" | "work" | "study"
+import { SerializedError } from "@reduxjs/toolkit"
+
+export type ItemIdType = number
 
 export type TodoItemType = {
-  id: string
+  id: ItemIdType
+  userId: number
   title: string
-  description?: string
-  done: boolean
-  important: boolean
-  category: CategoryTypes
+  body: string
+  done?: boolean
+  important?: boolean
 }
 
 export type UpdatedKeysType = Pick<TodoItemType, "done" | "important">
 
 export type FilterTypes = "all" | "important" | "done"
 
+export type AsyncError = SerializedError | null
+
+export type EditableTaskType = {
+  id: ItemIdType | null
+  title: string
+  body: string
+}
+
 export type TodoStateType = {
   todoItems: TodoItemType[]
-  todoTitle: string
-  todoDescription: string
   searchValue: string
   filterType: FilterTypes
 
-  isVisibleAddTask: boolean
+  isLoading: boolean
+  error: AsyncError
+
+  isVisibleTaskForm: boolean
   isVisibleRemoveAll: boolean
+
+  editableTask: EditableTaskType
 }
 
-export type VisibleModalKeysType = Pick<TodoStateType, "isVisibleAddTask" | "isVisibleRemoveAll">
+export type VisibleModalKeysType = Pick<TodoStateType, "isVisibleTaskForm" | "isVisibleRemoveAll">

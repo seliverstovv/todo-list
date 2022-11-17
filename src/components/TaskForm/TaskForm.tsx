@@ -1,74 +1,62 @@
 /** @jsxImportSource @emotion/react */
-import { ChangeEvent, FormEvent, useState } from "react"
+import { Form, Field } from "react-final-form"
 import { useAppDispath, useAppSelector } from "store/hooks"
-import { todoTitleSelector, isVisibleAddTaskSelector, todoDescriptionSelector } from "features/selectors"
-import {
-  setTodoTitle,
-  setItem,
-  toggleVisibleModal,
-  setFilterType,
-  setTodoDescription,
-} from "features/todoSlice"
+import { isVisibleTaskFormSelector, editableTaskSelector } from "features/selectors"
+import { setItem, toggleVisibleModal, setFilterType, setEditableTask } from "features/todoSlice"
 import Modal from "UI/Modal/Modal"
 import FillButton from "UI/Buttons/FillButton"
 import TextInput from "UI/Inputs/TextInput"
-import { InputError } from "UI/Inputs/TextInput/types"
 import Textarea from "UI/Inputs/Textarea"
 import Paper from "UI/Paper"
 import { css } from "@emotion/react"
+import { TodoFormValues } from "./types"
+import validate, { DESCRIPTION_MAX_LENGTH } from "./validate"
 
 const TaskForm = () => {
-  const [error, setError] = useState<InputError>(null)
   const dispatch = useAppDispath()
-  const isVisibleAddTask = useAppSelector(isVisibleAddTaskSelector)
-  const todoTitle = useAppSelector(todoTitleSelector)
-  const todoDescription = useAppSelector(todoDescriptionSelector)
+  const isVisibleTaskForm = useAppSelector(isVisibleTaskFormSelector)
+  const editableTask = useAppSelector(editableTaskSelector)
+
+  const getInitialValues = () => ({
+    title: editableTask.title || "",
+    body: editableTask.body || "",
+  })
+
+  const resetEditableTask = () => {
+    if (editableTask.id) {
+      dispatch(setEditableTask({ id: null, body: "", title: "" }))
+    }
+  }
 
   const visibleModalHandler = () => {
-    dispatch(toggleVisibleModal("isVisibleAddTask"))
+    dispatch(toggleVisibleModal("isVisibleTaskForm"))
+    resetEditableTask()
   }
 
-  const submitHandler = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    if (todoTitle.length === 0) {
-      setError("Required")
-      return
-    }
-
+  const submitHandler = (values: TodoFormValues) => {
     dispatch(
       setItem({
-        id: `${Date.now()}`,
-        title: todoTitle,
+        id: editableTask.id ? editableTask.id : Date.now(),
+        // mockUserId
+        userId: 1,
+        title: values.title,
+        body: values.body,
         done: false,
         important: false,
-        category: "home",
       })
     )
-    dispatch(setTodoTitle(""))
     visibleModalHandler()
     dispatch(setFilterType("all"))
-  }
-
-  const todoTitleHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    if (todoTitle.length > 0) {
-      setError(null)
-    }
-    dispatch(setTodoTitle(e.target.value))
-  }
-
-  const todoDescriptionHandler = (
-    e: ChangeEvent<HTMLTextAreaElement> & ChangeEvent<HTMLInputElement>
-  ) => {
-    dispatch(setTodoDescription(e.target.value))
+    resetEditableTask()
   }
 
   return (
     <Modal
-      isOpened={isVisibleAddTask}
+      isOpened={isVisibleTaskForm}
       onClose={visibleModalHandler}
       css={css`
+        max-width: 500px;
         width: 100%;
-        padding: 10rem;
       `}
     >
       <Paper
@@ -76,27 +64,60 @@ const TaskForm = () => {
           width: 100%;
         `}
       >
-        <form onSubmit={submitHandler}>
-          <TextInput
-            value={todoTitle}
-            onChange={todoTitleHandler}
-            label="Title"
-            error={error}
-            css={css`
-              margin-bottom: 2.4rem;
-            `}
-          />
-          <Textarea
-            label="Description"
-            value={todoDescription}
-            onChange={todoDescriptionHandler}
-            css={css`
-              margin-bottom: 2.4rem;
-            `}
-            rows={10}
-          />
-          <FillButton type="submit">Add</FillButton>
-        </form>
+        <Form
+          initialValues={getInitialValues()}
+          onSubmit={submitHandler}
+          validate={(values) => validate(values, getInitialValues())}
+          render={({ handleSubmit, hasValidationErrors }) => (
+            <form>
+              <Field<string> name="title">
+                {({ input, meta }) => (
+                  <TextInput
+                    name={input.name}
+                    label="Title"
+                    value={input.value}
+                    onChange={input.onChange}
+                    error={meta.error && meta.modified && meta.error}
+                    withError
+                    css={css`
+                      margin-bottom: 1.4rem;
+                    `}
+                  />
+                )}
+              </Field>
+              <Field<string> name="body">
+                {({ input, meta }) => (
+                  <Textarea
+                    name={input.name}
+                    label="Description"
+                    value={input.value}
+                    onChange={input.onChange}
+                    error={meta.error && meta.modified && meta.error}
+                    maxLength={DESCRIPTION_MAX_LENGTH}
+                    css={css`
+                      margin-bottom: 2.4rem;
+                    `}
+                  />
+                )}
+              </Field>
+              <div
+                css={css`
+                  display: flex;
+                  button:first-of-type {
+                    margin-right: 1.2rem;
+                  }
+                `}
+              >
+                <FillButton type="button" onClick={handleSubmit} disabled={hasValidationErrors}>
+                  {editableTask.id ? "Save" : "Add"}
+                </FillButton>
+                <FillButton type="button" onClick={visibleModalHandler}>
+                  Cancel
+                </FillButton>
+              </div>
+            </form>
+          )}
+        />
       </Paper>
     </Modal>
   )
