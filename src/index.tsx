@@ -2,8 +2,6 @@ import React from "react"
 import ReactDOM from "react-dom/client"
 import { Provider as StoreProvider } from "react-redux"
 import { PersistGate } from "redux-persist/integration/react"
-import { ThemeProvider } from "@emotion/react"
-import theme from "./UI/_theme"
 import setupStore from "./store"
 import App from "./App"
 import reportWebVitals from "./reportWebVitals"
@@ -15,9 +13,7 @@ root.render(
   <React.StrictMode>
     <StoreProvider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <ThemeProvider theme={theme}>
-          <App />
-        </ThemeProvider>
+        <App />
       </PersistGate>
     </StoreProvider>
   </React.StrictMode>

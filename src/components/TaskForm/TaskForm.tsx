@@ -3,7 +3,7 @@ import styled from "@emotion/styled"
 import { useAppDispath, useAppSelector } from "store/hooks"
 import { editableTaskSelector } from "features/todo/selectors"
 import { isVisibleTaskFormSelector } from "features/UI/selectors"
-import { toggleVisibleModal } from "features/UI/UISlice"
+import { closeModal } from "features/UI/UISlice"
 import { setItem, editItem, setFilterType, setEditableTask } from "features/todo/todoSlice"
 import Modal from "UI/Modal/Modal"
 import FillButton from "UI/Buttons/FillButton"
@@ -30,8 +30,8 @@ const TaskForm = ({ className }: TaskFormProps) => {
     }
   }
 
-  const visibleModalHandler = () => {
-    dispatch(toggleVisibleModal("isVisibleTaskForm"))
+  const closeModalHandler = () => {
+    dispatch(closeModal("isVisibleTaskForm"))
     resetEditableTask()
   }
 
@@ -54,11 +54,11 @@ const TaskForm = ({ className }: TaskFormProps) => {
       dispatch(setFilterType("all"))
     }
 
-    visibleModalHandler()
+    closeModalHandler()
   }
 
   return (
-    <Modal isOpened={isVisibleTaskForm} onClose={visibleModalHandler} className={className}>
+    <Modal isOpened={isVisibleTaskForm} onClose={closeModalHandler} className={className}>
       <Paper className="paper">
         <Form
           initialValues={getInitialValues()}
@@ -96,7 +96,7 @@ const TaskForm = ({ className }: TaskFormProps) => {
                 <FillButton type="button" onClick={handleSubmit} disabled={hasValidationErrors}>
                   {editableTask.id ? "Save" : "Add"}
                 </FillButton>
-                <FillButton type="button" onClick={visibleModalHandler}>
+                <FillButton type="button" onClick={closeModalHandler}>
                   Cancel
                 </FillButton>
               </div>

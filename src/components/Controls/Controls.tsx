@@ -1,7 +1,7 @@
 import styled from "@emotion/styled"
 import { useAppDispath, useAppSelector } from "store/hooks"
 import { todoItemsCountsSelector } from "features/todo/selectors"
-import { toggleVisibleModal } from "features/UI/UISlice"
+import { openModal } from "features/UI/UISlice"
 import BorderButton from "UI/Buttons/BorderButton"
 import Typography from "UI/Typography"
 import Filter from "components/Filters"
@@ -14,12 +14,12 @@ const Controls = ({ className }: { className?: string }) => {
   const dispatch = useAppDispath()
   const { totalCount } = useAppSelector(todoItemsCountsSelector)
 
-  const visibleAddTaskHandler = () => {
-    dispatch(toggleVisibleModal("isVisibleTaskForm"))
+  const openAddTaskHandler = () => {
+    dispatch(openModal("isVisibleTaskForm"))
   }
 
-  const visibleRemoveAllHandler = () => {
-    dispatch(toggleVisibleModal("isVisibleRemoveAll"))
+  const openRemoveAllHandler = () => {
+    dispatch(openModal("isVisibleRemoveAll"))
   }
 
   return (
@@ -34,11 +34,11 @@ const Controls = ({ className }: { className?: string }) => {
         <Typography size="xxxl" tag="h1" className="title">
           Tasks:
         </Typography>
-        <BorderButton className="add-task" onClick={visibleAddTaskHandler} kind="success" type="button">
+        <BorderButton className="add-task" onClick={openAddTaskHandler} kind="success" type="button">
           Add task
         </BorderButton>
 
-        <BorderButton disabled={!totalCount} onClick={visibleRemoveAllHandler} kind="warn" type="button">
+        <BorderButton disabled={!totalCount} onClick={openRemoveAllHandler} kind="warn" type="button">
           Clear all
         </BorderButton>
       </div>

@@ -1,8 +1,11 @@
 import { useEffect } from "react"
-import { Global, useTheme } from "@emotion/react"
+import { Global, ThemeProvider } from "@emotion/react"
 import styled from "@emotion/styled"
+import darkTheme from "UI/_theme"
+import lightTheme from "UI/_theme/lightTheme"
 import { useAppDispath, useAppSelector } from "store/hooks"
 import getTodosThunk from "features/todo/asyncThunk"
+import { themeSelector } from "features/UI/selectors"
 import { loadingSateSelector, todoItemsSelector } from "features/todo/selectors"
 
 import Loader from "UI/Loader"
@@ -17,7 +20,14 @@ const App = ({ className }: { className?: string }) => {
   const dispatch = useAppDispath()
   const { isLoading, error } = useAppSelector(loadingSateSelector)
   const todoItems = useAppSelector(todoItemsSelector)
-  const theme = useTheme()
+  const theme = useAppSelector(themeSelector)
+
+  const themes = {
+    dark: darkTheme,
+    light: lightTheme,
+  }
+
+  const selectTheme = themes[theme]
 
   useEffect(() => {
     // If the sheet is empty -> download test data from the server
@@ -29,8 +39,8 @@ const App = ({ className }: { className?: string }) => {
   }, [])
 
   return (
-    <>
-      <Global styles={getGlobalStyles(theme)} />
+    <ThemeProvider theme={selectTheme}>
+      <Global styles={getGlobalStyles(selectTheme)} />
 
       <main className={className}>
         <Header />
@@ -42,7 +52,7 @@ const App = ({ className }: { className?: string }) => {
         )) || <TodoList />}
         {error && <ErrorPopup error={error} />}
       </main>
-    </>
+    </ThemeProvider>
   )
 }
 

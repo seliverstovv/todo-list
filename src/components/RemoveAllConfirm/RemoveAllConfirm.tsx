@@ -2,7 +2,7 @@ import styled from "@emotion/styled"
 import { useAppDispath, useAppSelector } from "store/hooks"
 import { removeAll } from "features/todo/todoSlice"
 import { isVisibleRemoveAllSelector } from "features/UI/selectors"
-import { toggleVisibleModal } from "features/UI/UISlice"
+import { closeModal } from "features/UI/UISlice"
 import Modal from "UI/Modal"
 import Typography from "UI/Typography"
 import Paper from "UI/Paper"
@@ -13,24 +13,24 @@ const RemoveAllConfirm = ({ className }: { className?: string }) => {
   const dispatch = useAppDispath()
   const isVisibleRemoveAll = useAppSelector(isVisibleRemoveAllSelector)
 
-  const toggleVisibleModalHandler = () => {
-    dispatch(toggleVisibleModal("isVisibleRemoveAll"))
+  const closeModalHandler = () => {
+    dispatch(closeModal("isVisibleRemoveAll"))
   }
 
   const removeAllHandler = () => {
     dispatch(removeAll())
-    toggleVisibleModalHandler()
+    closeModalHandler()
   }
 
   return (
-    <Modal isOpened={isVisibleRemoveAll} onClose={toggleVisibleModalHandler}>
+    <Modal isOpened={isVisibleRemoveAll} onClose={closeModalHandler}>
       <Paper className={className}>
         <Typography className="title">Are you shure?</Typography>
         <div className="buttons">
           <BorderButton kind="warn" onClick={removeAllHandler}>
             Delete
           </BorderButton>
-          <BorderButton kind="success" onClick={toggleVisibleModalHandler}>
+          <BorderButton kind="success" onClick={closeModalHandler}>
             Cancel
           </BorderButton>
         </div>

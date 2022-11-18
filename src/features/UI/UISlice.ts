@@ -1,26 +1,34 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { UIStateType } from "./types"
+import { ThemesType, UIStateType } from "./types"
 
 const initialState: UIStateType = {
+  theme: "dark",
   modals: {
     isVisibleTaskForm: false,
     isVisibleRemoveAll: false,
   },
 }
 
-type ToggleVisibleModalAction = PayloadAction<keyof UIStateType["modals"]>
+type ModalAction = PayloadAction<keyof UIStateType["modals"]>
 
 const UISlice = createSlice({
   name: "UISlice",
   initialState,
   reducers: {
-    toggleVisibleModal(state, { payload }: ToggleVisibleModalAction) {
-      const oldState = state.modals[payload]
-      state.modals[payload] = !oldState
+    openModal(state, { payload }: ModalAction) {
+      state.modals[payload] = true
+    },
+
+    closeModal(state, { payload }: ModalAction) {
+      state.modals[payload] = false
+    },
+
+    setTheme(state, { payload }: PayloadAction<ThemesType>) {
+      state.theme = payload
     },
   },
 })
 
-export const { toggleVisibleModal } = UISlice.actions
+export const { openModal, closeModal, setTheme } = UISlice.actions
 
 export default UISlice.reducer

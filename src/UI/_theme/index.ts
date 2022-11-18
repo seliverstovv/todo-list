@@ -1,4 +1,4 @@
-const theme = {
+const defaultTheme = {
   colors: {
     primary: {
       main: "#FFFFFF",
@@ -32,10 +32,10 @@ const theme = {
   },
 }
 
-export type ThemeType = typeof theme
+export type ThemeType = typeof defaultTheme
 
 export interface ThemeProps {
   theme: ThemeType
 }
 
-export default theme
+export default defaultTheme

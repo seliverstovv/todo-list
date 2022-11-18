@@ -1,7 +1,7 @@
 import styled from "@emotion/styled"
 import { useAppDispath } from "store/hooks"
 import { toggleBooleanField, removeItem, setEditableTask } from "features/todo/todoSlice"
-import { toggleVisibleModal } from "features/UI/UISlice"
+import { openModal } from "features/UI/UISlice"
 import Typography from "UI/Typography"
 import BorderButton from "UI/Buttons/BorderButton"
 import { ReactComponent as DoneIcon } from "./icons/done.svg"
@@ -28,7 +28,7 @@ const TodoItem = (props: TodoItemProps) => {
 
   const setEditableHandler = () => {
     dispatch(setEditableTask(props))
-    dispatch(toggleVisibleModal("isVisibleTaskForm"))
+    dispatch(openModal("isVisibleTaskForm"))
   }
 
   return (
