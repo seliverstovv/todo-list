@@ -1,5 +1,5 @@
 import { css } from "@emotion/react"
-import { ThemeProps } from "theme"
+import { ThemeProps } from "UI/_theme"
 import { TextAreaProps } from "../types"
 
 export default ({ value }: ThemeProps & TextAreaProps) => {
@@ -9,6 +9,7 @@ export default ({ value }: ThemeProps & TextAreaProps) => {
     & {
       display: flex;
       flex-flow: column;
+
       .label {
         transform: translateY(-50%);
         top: ${isEmptyValue ? "2rem" : "0"};

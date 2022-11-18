@@ -16,7 +16,7 @@ const TextInput = ({
 }: TextInputProps) => {
   return (
     <label className={className}>
-      <div className="placeholder">
+      <div className="wrapper">
         {icon && <span className="icon">{icon}</span>}
         <input
           name={name}

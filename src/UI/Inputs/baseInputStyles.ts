@@ -1,5 +1,5 @@
 import { css } from "@emotion/react"
-import { ThemeProps } from "theme"
+import { ThemeProps } from "UI/_theme"
 import { BaseInputProps } from "./types"
 
 export default ({ theme, error }: ThemeProps & BaseInputProps) => {
@@ -7,7 +7,7 @@ export default ({ theme, error }: ThemeProps & BaseInputProps) => {
     & {
       display: block;
 
-      .placeholder {
+      .wrapper {
         position: relative;
       }
 
@@ -41,7 +41,7 @@ export default ({ theme, error }: ThemeProps & BaseInputProps) => {
         top: 0;
       }
 
-      .placeholder .input {
+      .wrapper .input {
         ${error && `border: 1px solid ${theme.colors.primary.accent.b};`}
       }
 

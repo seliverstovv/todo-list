@@ -1,5 +1,5 @@
 import { css } from "@emotion/react"
-import { ThemeProps } from "theme"
+import { ThemeProps } from "UI/_theme"
 import { BorderButtonProps } from "./types"
 
 export default ({

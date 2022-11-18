@@ -1,6 +1,6 @@
 import { ReactNode } from "react"
 
-import { ThemeType } from "theme"
+import { ThemeType } from "UI/_theme"
 
 type FontSizes = keyof ThemeType["fontSizes"]
 

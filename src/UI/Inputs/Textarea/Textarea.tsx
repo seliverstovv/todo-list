@@ -22,7 +22,7 @@ const Textarea = ({
 
   return (
     <label className={className}>
-      <div className="placeholder">
+      <div className="wrapper">
         <textarea
           name={name}
           ref={textAreaRef}

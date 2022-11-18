@@ -1,21 +1,11 @@
-/** @jsxImportSource @emotion/react */
-import { css, useTheme } from "@emotion/react"
-import { ReactNode } from "react"
+import styled from "@emotion/styled"
+import styles from "./styles"
+import { PaperProps } from "./types"
 
-const Paper = ({ children, className }: { children: ReactNode; className?: string }) => {
-  const { colors, radius } = useTheme()
-
-  const styles = css`
-    padding: 3.2rem 4.2rem;
-    background-color: ${colors.secondary.d};
-    border-radius: ${radius.paper};
-  `
-
-  return (
-    <div className={className} css={styles}>
-      {children}
-    </div>
-  )
+const Paper = ({ children, className }: PaperProps) => {
+  return <div className={className}>{children}</div>
 }
 
-export default Paper
+export default styled(Paper)`
+  ${styles}
+`

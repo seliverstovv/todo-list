@@ -1,5 +1,5 @@
 import { css } from "@emotion/react"
-import { ThemeProps } from "theme"
+import { ThemeProps } from "UI/_theme"
 import { BaseButtonProps } from "UI/Buttons/baseButtonTypes"
 
 export default ({ theme, direction = "row", size = "large" }: ThemeProps & BaseButtonProps) => {

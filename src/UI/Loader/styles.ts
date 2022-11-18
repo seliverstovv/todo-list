@@ -1,38 +1,57 @@
 import { css } from "@emotion/react"
+import { ThemeProps } from "UI/_theme"
 
-export default () => {
+export default ({ theme }: ThemeProps) => {
   return css`
     & {
       display: inline-block;
       position: relative;
+      width: 80px;
+      height: 80px;
       transform: translate(-50%, -50%);
-      top: 50%;
       left: 50%;
+      top: 50%;
 
       div {
-        box-sizing: border-box;
-        display: block;
         position: absolute;
-        border: 8px solid #fff;
+        border: 4px solid ${theme.colors.primary.deep};
+        opacity: 1;
         border-radius: 50%;
-        animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-        border-color: #fff transparent transparent transparent;
+        animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
       }
-      div:nth-of-type() {
-        animation-delay: -0.45s;
+
+      div:nth-child(2) {
+        animation-delay: -0.5s;
       }
-      div:nth-of-type() {
-        animation-delay: -0.3s;
-      }
-      div:nth-of-type() {
-        animation-delay: -0.15s;
-      }
-      @keyframes lds-ring {
+
+      @keyframes lds-ripple {
         0% {
-          transform: rotate(0deg);
+          top: 36px;
+          left: 36px;
+          width: 0;
+          height: 0;
+          opacity: 0;
+        }
+        4.9% {
+          top: 36px;
+          left: 36px;
+          width: 0;
+          height: 0;
+          opacity: 0;
+        }
+        5% {
+          top: 36px;
+          left: 36px;
+          width: 0;
+          height: 0;
+          opacity: 1;
         }
         100% {
-          transform: rotate(360deg);
+          top: 0px;
+          left: 0px;
+          width: 72px;
+          height: 72px;
+          opacity: 0;
         }
       }
     }

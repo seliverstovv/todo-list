@@ -1,5 +1,5 @@
 import { css } from "@emotion/react"
-import { ThemeProps } from "theme"
+import { ThemeProps } from "UI/_theme"
 import { TextInputProps } from "../types"
 
 export default ({ value, icon, withError }: ThemeProps & TextInputProps) => {
@@ -27,13 +27,14 @@ export default ({ value, icon, withError }: ThemeProps & TextInputProps) => {
     & {
       position: relative;
       padding-bottom: ${withError ? "2.2rem" : "0"};
+
       .label {
         transform: translateY(-50%);
         top: ${isEmptyValue ? "50%" : "0"};
         left: ${icon ? "3.6rem" : "1.6rem"};
       }
 
-      .placeholder .input {
+      .wrapper .input {
         padding-left: ${icon ? "3.2rem" : "1rem"};
       }
 
