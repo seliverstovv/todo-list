@@ -1,42 +1,18 @@
-/** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react"
+import styled from "@emotion/styled"
 import { useAppDispath, useAppSelector } from "store/hooks"
-import { toggleVisibleModal } from "features/todoSlice"
-import { todoItemsCountsSelector } from "features/selectors"
+import { todoItemsCountsSelector } from "features/todo/selectors"
+import { toggleVisibleModal } from "features/UI/UISlice"
 import BorderButton from "UI/Buttons/BorderButton"
 import Typography from "UI/Typography"
 import Filter from "components/Filters"
 import Search from "components/Search"
 import TaskForm from "components/TaskForm"
 import RemoveAllConfirm from "components/RemoveAllConfirm"
+import styles from "./styles"
 
-const Controls = () => {
+const Controls = ({ className }: { className?: string }) => {
   const dispatch = useAppDispath()
   const { totalCount } = useAppSelector(todoItemsCountsSelector)
-
-  const filterStyles = css`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 2.4rem;
-    @media screen and (max-width: 660px) {
-      flex-flow: column-reverse;
-      align-items: center;
-      label {
-        margin-bottom: 2rem;
-        width: 100%;
-      }
-    }
-  `
-
-  const controlStyles = css`
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    @media screen and (max-width: 400px) {
-      justify-content: center;
-    }
-  `
 
   const visibleAddTaskHandler = () => {
     dispatch(toggleVisibleModal("isVisibleTaskForm"))
@@ -47,38 +23,18 @@ const Controls = () => {
   }
 
   return (
-    <>
-      <div css={filterStyles}>
+    <div className={className}>
+      <div className="filters">
         <Filter />
 
-        <Search
-          css={css`
-            width: 50%;
-          `}
-        />
+        <Search className="search" />
       </div>
 
-      <div css={controlStyles}>
-        <Typography
-          size="xxxl"
-          tag="h1"
-          css={css`
-            margin-right: auto;
-            @media screen and (max-width: 400px) {
-              display: none;
-            }
-          `}
-        >
+      <div className="controls">
+        <Typography size="xxxl" tag="h1" className="title">
           Tasks:
         </Typography>
-        <BorderButton
-          css={css`
-            margin-right: 1rem;
-          `}
-          onClick={visibleAddTaskHandler}
-          kind="success"
-          type="button"
-        >
+        <BorderButton className="add-task" onClick={visibleAddTaskHandler} kind="success" type="button">
           Add task
         </BorderButton>
 
@@ -89,8 +45,10 @@ const Controls = () => {
 
       <TaskForm />
       <RemoveAllConfirm />
-    </>
+    </div>
   )
 }
 
-export default Controls
+export default styled(Controls)`
+  ${styles}
+`

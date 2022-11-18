@@ -1,27 +1,18 @@
-/** @jsxImportSource @emotion/react */
-import { css, useTheme } from "@emotion/react"
+import styled from "@emotion/styled"
 import BaseButton from "UI/Buttons/BaseButton"
 import { FillButtonProps } from "./types"
+import styles from "./styles"
 
 const FillButton = (props: FillButtonProps) => {
-  const { color, children, ...rest } = props
-  const { colors } = useTheme()
-
-  const styles = css`
-    border: 0.1rem solid ${colors.secondary.c};
-    background-color: ${colors.secondary.c};
-    color: ${colors.primary.main};
-    &:hover {
-      border: 0.1rem solid ${colors.secondary.a};
-      background-color: ${colors.secondary.a};
-    }
-  `
+  const { color, children, className, ...rest } = props
 
   return (
-    <BaseButton css={styles} {...rest}>
+    <BaseButton className={className} {...rest}>
       {children}
     </BaseButton>
   )
 }
 
-export default FillButton
+export default styled(FillButton)`
+  ${styles}
+`

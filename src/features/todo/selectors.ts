@@ -10,9 +10,6 @@ export const todoItemsSelector = ({ todoReducer }: RootState) => todoReducer.tod
 export const searchValueSelector = ({ todoReducer }: RootState) => todoReducer.searchValue
 export const filterTypeSelector = ({ todoReducer }: RootState) => todoReducer.filterType
 
-export const isVisibleTaskFormSelector = ({ todoReducer }: RootState) => todoReducer.isVisibleTaskForm
-export const isVisibleRemoveAllSelector = ({ todoReducer }: RootState) => todoReducer.isVisibleRemoveAll
-
 export const editableTaskSelector = ({ todoReducer }: RootState) => todoReducer.editableTask
 
 export const todoItemsCountsSelector = createSelector([todoItemsSelector], (items) => {

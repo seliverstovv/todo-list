@@ -1,12 +1,12 @@
-/** @jsxImportSource @emotion/react */
+import styled from "@emotion/styled"
 import { useAppDispath, useAppSelector } from "store/hooks"
-import { setFilterType } from "features/todoSlice"
-import { filterTypeSelector } from "features/selectors"
+import { setFilterType } from "features/todo/todoSlice"
+import { filterTypeSelector } from "features/todo/selectors"
+import { FilterTypes } from "features/todo/types"
 import BorderButton from "UI/Buttons/BorderButton"
-import { FilterTypes } from "features/types"
-import { css } from "@emotion/react"
+import styles from "./styles"
 
-const Filter = () => {
+const Filter = ({ className }: { className?: string }) => {
   const dispatch = useAppDispath()
   const filterType = useAppSelector(filterTypeSelector)
 
@@ -14,16 +14,8 @@ const Filter = () => {
     dispatch(setFilterType(type))
   }
 
-  const styles = css`
-    display: flex;
-    align-items: center;
-    button:not(:last-of-type) {
-      margin-right: 2rem;
-    }
-  `
-
   return (
-    <div css={styles}>
+    <div className={className}>
       <BorderButton isActive={filterType === "all"} onClick={() => changeFilterHandler("all")}>
         All
       </BorderButton>
@@ -47,4 +39,6 @@ const Filter = () => {
   )
 }
 
-export default Filter
+export default styled(Filter)`
+  ${styles}
+`

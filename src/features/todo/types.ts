@@ -21,14 +21,8 @@ export type TodoStateType = {
   todoItems: TodoItemType[]
   searchValue: string
   filterType: FilterTypes
+  editableTask: Partial<TodoItemType>
 
   isLoading: boolean
   error: AsyncError
-
-  isVisibleTaskForm: boolean
-  isVisibleRemoveAll: boolean
-
-  editableTask: Partial<TodoItemType>
 }
-
-export type VisibleModalKeysType = Pick<TodoStateType, "isVisibleTaskForm" | "isVisibleRemoveAll">

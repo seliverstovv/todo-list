@@ -3,10 +3,7 @@ import useIsomorphicLayoutEffect from "./useIsomorphicLayoutEffect"
 
 type UseLockedBodyOutput = [boolean, (locked: boolean) => void]
 
-function useLockedBody(
-  initialLocked = false,
-  rootId = "root" // Default to `___gatsby` to not introduce breaking change
-): UseLockedBodyOutput {
+function useLockedBody(initialLocked = false, rootId = "root"): UseLockedBodyOutput {
   const [locked, setLocked] = useState(initialLocked)
 
   // Do the side effect before render

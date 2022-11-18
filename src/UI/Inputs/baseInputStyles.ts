@@ -32,7 +32,7 @@ export default ({ theme, error }: ThemeProps & BaseInputProps) => {
         height: 4.8rem;
         width: 100%;
         &:focus {
-          border: 1px solid ${theme.colors.primary.accent.a};
+          border: 0.1rem solid ${theme.colors.primary.accent.a};
           outline: none;
         }
       }
@@ -42,7 +42,7 @@ export default ({ theme, error }: ThemeProps & BaseInputProps) => {
       }
 
       .wrapper .input {
-        ${error && `border: 1px solid ${theme.colors.primary.accent.b};`}
+        ${error && `border: 0.1rem solid ${theme.colors.primary.accent.b};`}
       }
 
       .error {

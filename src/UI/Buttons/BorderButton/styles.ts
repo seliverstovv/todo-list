@@ -9,6 +9,8 @@ export default ({
   kind = "default",
 }: ThemeProps & BorderButtonProps) => {
   const getKindStyles = () => {
+    const isToggleAndActive = isToggle && isActive
+
     switch (kind) {
       case "default":
         return css`
@@ -20,7 +22,7 @@ export default ({
           }
           &:hover {
             background-color: ${colors.primary.accent.c};
-            filter: brightness(${isToggle && isActive ? "120%" : "100%"});
+            filter: brightness(${isToggleAndActive ? "120%" : "100%"});
           }
         `
       case "success":
@@ -34,7 +36,7 @@ export default ({
           &:hover {
             color: ${colors.secondary.a};
             background-color: ${colors.primary.accent.d};
-            filter: brightness(${isToggle && isActive ? "120%" : "100%"});
+            filter: brightness(${isToggleAndActive ? "120%" : "100%"});
             svg {
               fill: ${colors.secondary.a};
             }
@@ -50,7 +52,7 @@ export default ({
           }
           &:hover {
             background-color: ${colors.primary.accent.b};
-            filter: brightness(${isToggle && isActive ? "120%" : "100%"});
+            filter: brightness(${isToggleAndActive ? "120%" : "100%"});
           }
         `
       default:

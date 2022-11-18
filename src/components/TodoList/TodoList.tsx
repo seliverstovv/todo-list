@@ -1,43 +1,26 @@
-/** @jsxImportSource @emotion/react */
+import styled from "@emotion/styled"
 import { useAppSelector } from "store/hooks"
-import { todoItemsFilteredSelector } from "features/selectors"
-import TodoItem from "components/TodoItem"
+import { todoItemsFilteredSelector } from "features/todo/selectors"
 import Typography from "UI/Typography"
-import { css } from "@emotion/react"
+import TodoItem from "components/TodoItem"
+import styles from "./styles"
 
-const TodoList = () => {
+const TodoList = ({ className }: { className?: string }) => {
   const { count, filteredItems } = useAppSelector(todoItemsFilteredSelector)
-
-  const rootStyles = css`
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    padding: 3.2rem 0;
-  `
 
   if (count === 0) {
     return (
-      <div css={rootStyles}>
+      <div className={className}>
         <Typography>Add you tasks</Typography>
       </div>
     )
   }
 
-  const styles = css`
-    ${rootStyles}
-    ul {
-      width: 100%;
-    }
-    li {
-      margin-bottom: 3rem;
-    }
-  `
-
   return (
-    <div css={styles}>
+    <div className={className}>
       <ul className="list">
         {filteredItems.map((item) => (
-          <TodoItem key={item.id} {...item} />
+          <TodoItem className="item" key={item.id} {...item} />
         ))}
 
         {!filteredItems.length && <Typography>No Tasks Found</Typography>}
@@ -46,4 +29,6 @@ const TodoList = () => {
   )
 }
 
-export default TodoList
+export default styled(TodoList)`
+  ${styles}
+`

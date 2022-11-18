@@ -1,28 +1,15 @@
-/** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react"
-import { todoItemsCountsSelector } from "features/selectors"
+import styled from "@emotion/styled"
 import { useAppSelector } from "store/hooks"
+import { todoItemsCountsSelector } from "features/todo/selectors"
 import Typography from "UI/Typography"
+import styles from "./styles"
 
-const Header = () => {
+const Header = ({ className }: { className?: string }) => {
   const { doneCount, progressCount } = useAppSelector(todoItemsCountsSelector)
 
-  const styles = css`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 0 2rem 0;
-    @media screen and (max-width: 400px) {
-      flex-flow: column;
-      h2 {
-        margin-bottom: 1.2rem;
-      }
-    }
-  `
-
   return (
-    <header css={styles}>
-      <Typography tag="h2" size="xxl">
+    <header className={className}>
+      <Typography className="title" tag="h2" size="xxl">
         My Todo List
       </Typography>
       <Typography tag="h3" size="xl">
@@ -32,4 +19,6 @@ const Header = () => {
   )
 }
 
-export default Header
+export default styled(Header)`
+  ${styles}
+`

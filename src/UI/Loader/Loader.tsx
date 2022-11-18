@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import styled from "@emotion/styled"
 import styles from "./styles"
 import { LoaderProps } from "./types"

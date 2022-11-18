@@ -1,30 +1,19 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import getTodosThunk from "./asyncThunk"
-import {
-  FilterTypes,
-  ItemIdType,
-  TodoItemType,
-  TodoStateType,
-  UpdatedKeysType,
-  VisibleModalKeysType,
-} from "./types"
+import { FilterTypes, ItemIdType, TodoItemType, TodoStateType, UpdatedKeysType } from "./types"
 
 const initialState: TodoStateType = {
   todoItems: [],
   searchValue: "",
   filterType: "all",
 
+  editableTask: {},
+
   isLoading: false,
   error: null,
-
-  isVisibleTaskForm: false,
-  isVisibleRemoveAll: false,
-
-  editableTask: {},
 }
 
 type ToggleBooleanAction = PayloadAction<{ id: ItemIdType; key: keyof UpdatedKeysType }>
-type ToggleVisibleModalAction = PayloadAction<keyof VisibleModalKeysType>
 
 const todoSlice = createSlice({
   name: "todoSlice",
@@ -66,11 +55,6 @@ const todoSlice = createSlice({
     setFilterType(state, { payload }: PayloadAction<FilterTypes>) {
       state.filterType = payload
     },
-
-    toggleVisibleModal(state, { payload }: ToggleVisibleModalAction) {
-      const oldState = state[payload]
-      state[payload] = !oldState
-    },
   },
   extraReducers: (builder) =>
     builder
@@ -96,7 +80,6 @@ export const {
   setEditableTask,
   setSearchValue,
   setFilterType,
-  toggleVisibleModal,
 } = todoSlice.actions
 
 export default todoSlice.reducer

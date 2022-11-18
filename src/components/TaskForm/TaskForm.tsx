@@ -1,24 +1,20 @@
-/** @jsxImportSource @emotion/react */
 import { Form, Field } from "react-final-form"
+import styled from "@emotion/styled"
 import { useAppDispath, useAppSelector } from "store/hooks"
-import { isVisibleTaskFormSelector, editableTaskSelector } from "features/selectors"
-import {
-  setItem,
-  editItem,
-  toggleVisibleModal,
-  setFilterType,
-  setEditableTask,
-} from "features/todoSlice"
+import { editableTaskSelector } from "features/todo/selectors"
+import { isVisibleTaskFormSelector } from "features/UI/selectors"
+import { toggleVisibleModal } from "features/UI/UISlice"
+import { setItem, editItem, setFilterType, setEditableTask } from "features/todo/todoSlice"
 import Modal from "UI/Modal/Modal"
 import FillButton from "UI/Buttons/FillButton"
 import TextInput from "UI/Inputs/TextInput"
 import Textarea from "UI/Inputs/Textarea"
 import Paper from "UI/Paper"
-import { css } from "@emotion/react"
-import { TodoFormValues } from "./types"
+import { TaskFormProps, TodoFormValues } from "./types"
 import validate, { DESCRIPTION_MAX_LENGTH } from "./validate"
+import styles from "./styles"
 
-const TaskForm = () => {
+const TaskForm = ({ className }: TaskFormProps) => {
   const dispatch = useAppDispath()
   const isVisibleTaskForm = useAppSelector(isVisibleTaskFormSelector)
   const editableTask = useAppSelector(editableTaskSelector)
@@ -62,19 +58,8 @@ const TaskForm = () => {
   }
 
   return (
-    <Modal
-      isOpened={isVisibleTaskForm}
-      onClose={visibleModalHandler}
-      css={css`
-        max-width: 500px;
-        width: 100%;
-      `}
-    >
-      <Paper
-        css={css`
-          width: 100%;
-        `}
-      >
+    <Modal isOpened={isVisibleTaskForm} onClose={visibleModalHandler} className={className}>
+      <Paper className="paper">
         <Form
           initialValues={getInitialValues()}
           onSubmit={submitHandler}
@@ -90,9 +75,7 @@ const TaskForm = () => {
                     onChange={input.onChange}
                     error={meta.error && meta.modified && meta.error}
                     withError
-                    css={css`
-                      margin-bottom: 1.4rem;
-                    `}
+                    className="text-input"
                   />
                 )}
               </Field>
@@ -105,20 +88,11 @@ const TaskForm = () => {
                     onChange={input.onChange}
                     error={meta.error && meta.modified && meta.error}
                     maxLength={DESCRIPTION_MAX_LENGTH}
-                    css={css`
-                      margin-bottom: 2.4rem;
-                    `}
+                    className="textarea"
                   />
                 )}
               </Field>
-              <div
-                css={css`
-                  display: flex;
-                  button:first-of-type {
-                    margin-right: 1.2rem;
-                  }
-                `}
-              >
+              <div className="buttons">
                 <FillButton type="button" onClick={handleSubmit} disabled={hasValidationErrors}>
                   {editableTask.id ? "Save" : "Add"}
                 </FillButton>
@@ -134,4 +108,6 @@ const TaskForm = () => {
   )
 }
 
-export default TaskForm
+export default styled(TaskForm)`
+  ${styles}
+`

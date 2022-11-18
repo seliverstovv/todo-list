@@ -6,15 +6,15 @@ export default ({ theme }: ThemeProps) => {
     & {
       display: inline-block;
       position: relative;
-      width: 80px;
-      height: 80px;
+      width: 8rem;
+      height: 8rem;
       transform: translate(-50%, -50%);
       left: 50%;
       top: 50%;
 
       div {
         position: absolute;
-        border: 4px solid ${theme.colors.primary.deep};
+        border: 0.4rem solid ${theme.colors.primary.deep};
         opacity: 1;
         border-radius: 50%;
         animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
@@ -26,31 +26,31 @@ export default ({ theme }: ThemeProps) => {
 
       @keyframes lds-ripple {
         0% {
-          top: 36px;
-          left: 36px;
+          top: 3.6rem;
+          left: 3.6rem;
           width: 0;
           height: 0;
           opacity: 0;
         }
         4.9% {
-          top: 36px;
-          left: 36px;
+          top: 3.6rem;
+          left: 3.6rem;
           width: 0;
           height: 0;
           opacity: 0;
         }
         5% {
-          top: 36px;
-          left: 36px;
+          top: 3.6rem;
+          left: 3.6rem;
           width: 0;
           height: 0;
           opacity: 1;
         }
         100% {
-          top: 0px;
-          left: 0px;
-          width: 72px;
-          height: 72px;
+          top: 0;
+          left: 0;
+          width: 7.2rem;
+          height: 7.2rem;
           opacity: 0;
         }
       }

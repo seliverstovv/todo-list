@@ -1,8 +1,8 @@
-import { useAppDispath, useAppSelector } from "store/hooks"
-import { searchValueSelector } from "features/selectors"
-import { setSearchValue } from "features/todoSlice"
-import TextInput from "UI/Inputs/TextInput"
 import { ChangeEvent } from "react"
+import { useAppDispath, useAppSelector } from "store/hooks"
+import { searchValueSelector } from "features/todo/selectors"
+import { setSearchValue } from "features/todo/todoSlice"
+import TextInput from "UI/Inputs/TextInput"
 import { ReactComponent as SearchIcon } from "./search.svg"
 
 const Search = ({ className }: { className?: string }) => {

@@ -1,14 +1,15 @@
-/** @jsxImportSource @emotion/react */
+import styled from "@emotion/styled"
 import { useAppDispath, useAppSelector } from "store/hooks"
-import { isVisibleRemoveAllSelector } from "features/selectors"
-import { toggleVisibleModal, removeAll } from "features/todoSlice"
+import { removeAll } from "features/todo/todoSlice"
+import { isVisibleRemoveAllSelector } from "features/UI/selectors"
+import { toggleVisibleModal } from "features/UI/UISlice"
 import Modal from "UI/Modal"
 import Typography from "UI/Typography"
 import Paper from "UI/Paper"
-import { css } from "@emotion/react"
 import BorderButton from "UI/Buttons/BorderButton"
+import styles from "./styles"
 
-const RemoveAllConfirm = () => {
+const RemoveAllConfirm = ({ className }: { className?: string }) => {
   const dispatch = useAppDispath()
   const isVisibleRemoveAll = useAppSelector(isVisibleRemoveAllSelector)
 
@@ -23,22 +24,9 @@ const RemoveAllConfirm = () => {
 
   return (
     <Modal isOpened={isVisibleRemoveAll} onClose={toggleVisibleModalHandler}>
-      <Paper>
-        <Typography
-          css={css`
-            margin-bottom: 2rem;
-          `}
-        >
-          Are you shure?
-        </Typography>
-        <div
-          css={css`
-            display: flex;
-            button {
-              margin: 0 1rem;
-            }
-          `}
-        >
+      <Paper className={className}>
+        <Typography className="title">Are you shure?</Typography>
+        <div className="buttons">
           <BorderButton kind="warn" onClick={removeAllHandler}>
             Delete
           </BorderButton>
@@ -51,4 +39,6 @@ const RemoveAllConfirm = () => {
   )
 }
 
-export default RemoveAllConfirm
+export default styled(RemoveAllConfirm)`
+  ${styles}
+`

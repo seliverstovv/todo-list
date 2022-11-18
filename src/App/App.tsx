@@ -1,23 +1,23 @@
-/** @jsxImportSource @emotion/react */
-import { Global, css, useTheme } from "@emotion/react"
 import { useEffect } from "react"
+import { Global, useTheme } from "@emotion/react"
+import styled from "@emotion/styled"
 import { useAppDispath, useAppSelector } from "store/hooks"
-import getTodosThunk from "features/asyncThunk"
+import getTodosThunk from "features/todo/asyncThunk"
+import { loadingSateSelector, todoItemsSelector } from "features/todo/selectors"
 
+import Loader from "UI/Loader"
 import Header from "components/Header"
-
 import TodoList from "components/TodoList"
 import Controls from "components/Controls"
-import resetStyles from "UI/resetStyles"
-import { loadingSateSelector, todoItemsSelector } from "features/selectors"
 import ErrorPopup from "components/ErrorPopup"
-import Loader from "UI/Loader"
 
-const App = () => {
+import styles, { getGlobalStyles } from "./styles"
+
+const App = ({ className }: { className?: string }) => {
   const dispatch = useAppDispath()
   const { isLoading, error } = useAppSelector(loadingSateSelector)
   const todoItems = useAppSelector(todoItemsSelector)
-  const { colors } = useTheme()
+  const theme = useTheme()
 
   useEffect(() => {
     // If the sheet is empty -> download test data from the server
@@ -30,34 +30,13 @@ const App = () => {
 
   return (
     <>
-      <Global
-        styles={css`
-          ${resetStyles}
-          html {
-            font-size: 62.5%;
-            font-family: "Roboto", sans-serif;
-          }
+      <Global styles={getGlobalStyles(theme)} />
 
-          body {
-            background-color: ${colors.secondary.a};
-          }
-        `}
-      />
-      <main
-        css={css`
-          max-width: 85rem;
-          padding: 2rem 3rem;
-          margin: 0 auto;
-        `}
-      >
+      <main className={className}>
         <Header />
         <Controls />
         {(isLoading && (
-          <div
-            css={css`
-              height: 60vh;
-            `}
-          >
+          <div className="loading">
             <Loader />
           </div>
         )) || <TodoList />}
@@ -67,4 +46,6 @@ const App = () => {
   )
 }
 
-export default App
+export default styled(App)`
+  ${styles}
+`
