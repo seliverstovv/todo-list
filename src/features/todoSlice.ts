@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import getTodosThunk from "./asyncThunk"
 import {
-  EditableTaskType,
   FilterTypes,
   ItemIdType,
   TodoItemType,
@@ -21,11 +20,7 @@ const initialState: TodoStateType = {
   isVisibleTaskForm: false,
   isVisibleRemoveAll: false,
 
-  editableTask: {
-    id: null,
-    title: "",
-    body: "",
-  },
+  editableTask: {},
 }
 
 type ToggleBooleanAction = PayloadAction<{ id: ItemIdType; key: keyof UpdatedKeysType }>
@@ -39,6 +34,11 @@ const todoSlice = createSlice({
       state.todoItems.unshift(payload)
     },
 
+    editItem(state, { payload }: PayloadAction<TodoItemType>) {
+      const index = state.todoItems.findIndex((item) => item.id === payload.id)
+      state.todoItems[index] = payload
+    },
+
     removeItem(state, { payload }: PayloadAction<ItemIdType>) {
       const prevState = state.todoItems
       state.todoItems = prevState.filter(({ id }) => id !== payload)
@@ -48,7 +48,7 @@ const todoSlice = createSlice({
       state.todoItems = []
     },
 
-    setEditableTask(state, { payload }: PayloadAction<EditableTaskType>) {
+    setEditableTask(state, { payload }: PayloadAction<TodoItemType>) {
       state.editableTask = payload
     },
 
@@ -89,6 +89,7 @@ const todoSlice = createSlice({
 
 export const {
   setItem,
+  editItem,
   toggleBooleanField,
   removeItem,
   removeAll,

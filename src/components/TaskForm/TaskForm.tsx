@@ -2,7 +2,13 @@
 import { Form, Field } from "react-final-form"
 import { useAppDispath, useAppSelector } from "store/hooks"
 import { isVisibleTaskFormSelector, editableTaskSelector } from "features/selectors"
-import { setItem, toggleVisibleModal, setFilterType, setEditableTask } from "features/todoSlice"
+import {
+  setItem,
+  editItem,
+  toggleVisibleModal,
+  setFilterType,
+  setEditableTask,
+} from "features/todoSlice"
 import Modal from "UI/Modal/Modal"
 import FillButton from "UI/Buttons/FillButton"
 import TextInput from "UI/Inputs/TextInput"
@@ -24,7 +30,7 @@ const TaskForm = () => {
 
   const resetEditableTask = () => {
     if (editableTask.id) {
-      dispatch(setEditableTask({ id: null, body: "", title: "" }))
+      dispatch(setEditableTask(Object.create(null)))
     }
   }
 
@@ -34,20 +40,25 @@ const TaskForm = () => {
   }
 
   const submitHandler = (values: TodoFormValues) => {
-    dispatch(
-      setItem({
-        id: editableTask.id ? editableTask.id : Date.now(),
-        // mockUserId
-        userId: 1,
-        title: values.title,
-        body: values.body,
-        done: false,
-        important: false,
-      })
-    )
+    const result = {
+      id: editableTask.id || Date.now(),
+      // mockUserId
+      userId: 1,
+      title: values.title,
+      body: values.body,
+      done: editableTask.done,
+      important: editableTask.important,
+    }
+
+    if (editableTask.id) {
+      dispatch(editItem(result))
+      resetEditableTask()
+    } else {
+      dispatch(setItem(result))
+      dispatch(setFilterType("all"))
+    }
+
     visibleModalHandler()
-    dispatch(setFilterType("all"))
-    resetEditableTask()
   }
 
   return (

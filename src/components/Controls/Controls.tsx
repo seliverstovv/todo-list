@@ -19,12 +19,23 @@ const Controls = () => {
     align-items: center;
     justify-content: space-between;
     margin-bottom: 2.4rem;
+    @media screen and (max-width: 660px) {
+      flex-flow: column-reverse;
+      align-items: center;
+      label {
+        margin-bottom: 2rem;
+        width: 100%;
+      }
+    }
   `
 
   const controlStyles = css`
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    @media screen and (max-width: 400px) {
+      justify-content: center;
+    }
   `
 
   const visibleAddTaskHandler = () => {
@@ -53,6 +64,9 @@ const Controls = () => {
           tag="h1"
           css={css`
             margin-right: auto;
+            @media screen and (max-width: 400px) {
+              display: none;
+            }
           `}
         >
           Tasks:

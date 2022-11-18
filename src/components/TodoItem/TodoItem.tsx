@@ -9,7 +9,8 @@ import { ReactComponent as DoneIcon } from "./icons/done.svg"
 import { ReactComponent as ImportantIcon } from "./icons/important.svg"
 import { ReactComponent as DeleteIcon } from "./icons/delete.svg"
 
-const TodoItem = ({ id, title, body, done, important }: TodoItemType) => {
+const TodoItem = (props: TodoItemType) => {
+  const { id, title, body, done, important } = props
   const { colors, radius } = useTheme()
   const dispatch = useAppDispath()
 
@@ -26,13 +27,17 @@ const TodoItem = ({ id, title, body, done, important }: TodoItemType) => {
   }
 
   const setEditableHandler = () => {
-    dispatch(setEditableTask({ id, title, body }))
+    dispatch(setEditableTask(props))
     dispatch(toggleVisibleModal("isVisibleTaskForm"))
   }
 
   const doneStyles = css`
     background-color: ${colors.secondary.b};
     border: 1px solid ${colors.secondary.b};
+    p {
+      filter: brightness(150%);
+      color: ${colors.secondary.d};
+    }
   `
 
   const importantStyles = css`
@@ -59,6 +64,11 @@ const TodoItem = ({ id, title, body, done, important }: TodoItemType) => {
 
     .buttons {
       display: flex;
+      @media screen and (max-width: 600px) {
+        padding-bottom: 1.2rem;
+        border-bottom: 1px solid ${colors.primary.accent.b};
+        margin-bottom: 1.2rem;
+      }
       button:not(:last-of-type) {
         margin-right: 1rem;
       }
@@ -71,9 +81,13 @@ const TodoItem = ({ id, title, body, done, important }: TodoItemType) => {
     .header {
       display: flex;
       justify-content: space-between;
+      flex-flow: column-reverse;
       width: 100%;
       padding: 0.8rem;
       margin-bottom: 0.8rem;
+      @media screen and (min-width: 600px) {
+        flex-flow: row;
+      }
     }
 
     .description {
