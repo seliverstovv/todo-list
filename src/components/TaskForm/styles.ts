@@ -10,6 +10,10 @@ export default () => {
         width: 100%;
       }
 
+      .title {
+        margin-bottom: 2.4rem;
+      }
+
       .text-input {
         margin-bottom: 1.4rem;
       }

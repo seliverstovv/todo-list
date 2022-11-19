@@ -10,6 +10,7 @@ import ThemeButton from "UI/Buttons/ThemeButton"
 import TextInput from "UI/Inputs/TextInput"
 import Textarea from "UI/Inputs/Textarea"
 import Paper from "UI/Paper"
+import Typography from "UI/Typography"
 import { TaskFormProps, TodoFormValues } from "./types"
 import validate, { DESCRIPTION_MAX_LENGTH } from "./validate"
 import styles from "./styles"
@@ -60,6 +61,9 @@ const TaskForm = ({ className }: TaskFormProps) => {
   return (
     <Modal isOpened={isVisibleTaskForm} onClose={closeModalHandler} className={className}>
       <Paper className="paper">
+        <Typography className="title" size="xxl">
+          Add task
+        </Typography>
         <Form
           initialValues={getInitialValues()}
           onSubmit={submitHandler}

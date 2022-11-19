@@ -7,7 +7,7 @@ export default ({ theme }: ThemeProps & PaperProps) => {
   return css`
     & {
       padding: 3.2rem 4.2rem;
-      background-color: ${colors.backgrounds.d};
+      background-color: ${colors.backgrounds.a};
       border-radius: ${radius.paper};
     }
   `

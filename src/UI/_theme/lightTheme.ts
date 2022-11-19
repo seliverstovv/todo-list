@@ -4,34 +4,34 @@ const lightTheme: ThemeType = {
   colors: {
     elements: {
       a: "#FFCC80",
-      b: "#FF8080",
+      b: "#FF1700",
       c: "#809CFF",
       d: "#CCFF80",
-      e: "#F2F2F2",
+      e: "#316B83",
     },
     backgrounds: {
-      a: "#121212",
-      b: "#1D1D1D",
-      c: "#272727",
-      d: "#363636",
-      e: "#FF8080",
+      a: "#FFF9CA",
+      b: "#FDFAF6",
+      c: "#FCF8E8",
+      d: "#F9F9F9",
+      e: "#FFB4B4",
     },
     buttons: {
       default: {
         base: {
-          color: "#FFFFFF",
-          border: "#809CFF",
+          color: "#000000",
+          border: "#316B83",
           background: "transparent",
         },
         hover: {
           color: "#FFFFFF",
-          border: "#809CFF",
-          background: "#809CFF",
+          border: "#316B83",
+          background: "#316B83",
         },
       },
       warn: {
         base: {
-          color: "#FFFFFF",
+          color: "#000000",
           border: "#FF8080",
           background: "transparent",
         },
@@ -43,26 +43,26 @@ const lightTheme: ThemeType = {
       },
       success: {
         base: {
-          color: "#FFFFFF",
-          border: "#CCFF80",
+          color: "#000000",
+          border: "#5AA469",
           background: "transparent",
         },
         hover: {
-          color: "#000000",
-          border: "#CCFF80",
-          background: "#CCFF80",
+          color: "#FFFFFF",
+          border: "#5AA469",
+          background: "#5AA469",
         },
       },
       fill: {
         base: {
           color: "#FFFFFF",
-          border: "#CCFF80",
-          background: "transparent",
+          border: "#316B83",
+          background: "#316B83",
         },
         hover: {
-          color: "#000000",
-          border: "#CCFF80",
-          background: "#CCFF80",
+          color: "#FFFFFF",
+          border: "#056676",
+          background: "#056676",
         },
       },
     },
@@ -78,10 +78,10 @@ const lightTheme: ThemeType = {
       xxxl: "4rem",
     },
     colors: {
-      primary: "#FFFFFF",
-      secondary: "#F2F2F2",
-      hint: "#D5D5D5",
-      error: "#FF8080",
+      primary: "#000000",
+      secondary: "#2C3333",
+      hint: "#7F8487",
+      error: "#FF1700",
     },
   },
   radius: {
