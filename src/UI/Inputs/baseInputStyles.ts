@@ -14,26 +14,25 @@ export default ({ theme, error }: ThemeProps & BaseInputProps) => {
       .input,
       .label {
         border-radius: ${theme.radius.button};
-        background-color: ${theme.colors.secondary.d};
+        background-color: ${theme.colors.backgrounds.d};
       }
 
       .label {
         position: absolute;
-        font-size: ${theme.fontSizes.l};
+        font-size: ${theme.fonts.sizes.l};
         padding: 0.2rem 0.4rem 0 0.4rem;
-        color: ${theme.colors.primary.main};
+        color: ${theme.fonts.colors.primary};
         transition: top 0.2s ease;
       }
 
       .input {
-        font-size: ${theme.fontSizes.xl};
-        color: ${theme.colors.primary.main};
-        border: 0.1rem solid ${theme.colors.primary.main};
+        font-size: ${theme.fonts.sizes.xl};
+        color: ${theme.fonts.colors.primary};
+        border: 0.1rem solid ${theme.colors.elements.e};
         height: 4.8rem;
         width: 100%;
         &:focus {
-          border: 0.1rem solid ${theme.colors.primary.accent.a};
-          outline: none;
+          border: 0.1rem solid ${theme.colors.elements.a};
         }
       }
 
@@ -42,13 +41,13 @@ export default ({ theme, error }: ThemeProps & BaseInputProps) => {
       }
 
       .wrapper .input {
-        ${error && `border: 0.1rem solid ${theme.colors.primary.accent.b};`}
+        ${error && `border: 0.1rem solid ${theme.colors.elements.b};`}
       }
 
       .error {
         align-self: flex-end;
         margin-top: 0.8rem;
-        ${error && `color: ${theme.colors.primary.accent.b};`}
+        ${error && `color: ${theme.fonts.colors.error};`}
       }
     }
   `

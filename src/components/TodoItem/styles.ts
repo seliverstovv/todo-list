@@ -3,24 +3,21 @@ import { ThemeProps } from "UI/_theme"
 import { TodoItemProps } from "./types"
 
 export default ({ theme, important, done }: ThemeProps & TodoItemProps) => {
-  const { colors, radius } = theme
+  const { colors, fonts, radius } = theme
 
   const baseStyes = css`
-    background-color: ${colors.secondary.d};
-    border: 0.1rem solid ${colors.secondary.d};
+    border: 0.1rem solid ${colors.elements.e};
   `
 
   const importantStyles = css`
-    background-color: ${colors.secondary.d};
-    border: 0.1rem solid ${colors.primary.accent.b};
+    border: 0.1rem solid ${colors.elements.b};
   `
 
   const doneStyles = css`
-    background-color: ${colors.secondary.b};
-    border: 0.1rem solid ${colors.secondary.b};
+    background-color: ${colors.backgrounds.b};
+    border: 0.1rem solid ${colors.backgrounds.b};
     p {
-      filter: brightness(150%);
-      color: ${colors.secondary.d};
+      color: ${fonts.colors.hint};
     }
   `
 
@@ -32,6 +29,7 @@ export default ({ theme, important, done }: ThemeProps & TodoItemProps) => {
       align-items: flex-start;
       border-radius: ${radius.paper};
       padding: 1rem 2rem;
+      background-color: ${colors.backgrounds.d};
 
       ${baseStyes}
       ${important && importantStyles}
@@ -41,7 +39,7 @@ export default ({ theme, important, done }: ThemeProps & TodoItemProps) => {
         display: flex;
         @media screen and (max-width: 600px) {
           padding-bottom: 1.2rem;
-          border-bottom: 0.1rem solid ${colors.primary.accent.b};
+          border-bottom: 0.1rem solid ${colors.elements.b};
           margin-bottom: 1.2rem;
         }
         button:not(:last-of-type) {
@@ -69,7 +67,7 @@ export default ({ theme, important, done }: ThemeProps & TodoItemProps) => {
         width: 100%;
         overflow-wrap: break-word;
         padding: 1.4rem 1.8rem 1.8rem 1.8rem;
-        border-top: 0.1rem solid ${colors.primary.deep};
+        border-top: 0.1rem solid ${colors.elements.c};
       }
     }
   `

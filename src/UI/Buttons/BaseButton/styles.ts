@@ -17,17 +17,17 @@ export default ({ theme, direction = "row", size = "large" }: ThemeProps & BaseB
         `
       case "small":
         return css`
-          font-size: ${theme.fontSizes.m};
+          font-size: ${theme.fonts.sizes.m};
           padding: 0.4rem 0.8rem;
         `
       case "mid":
         return css`
-          font-size: ${theme.fontSizes.xl};
+          font-size: ${theme.fonts.sizes.xl};
           padding: 0.8rem 1.2rem;
         `
       case "large":
         return css`
-          font-size: ${theme.fontSizes.xl};
+          font-size: ${theme.fonts.sizes.xl};
           padding: 1.2rem 1.6rem;
         `
       default:

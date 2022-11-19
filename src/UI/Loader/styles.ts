@@ -14,7 +14,7 @@ export default ({ theme }: ThemeProps) => {
 
       div {
         position: absolute;
-        border: 0.4rem solid ${theme.colors.primary.deep};
+        border: 0.4rem solid ${theme.colors.elements.c};
         opacity: 1;
         border-radius: 50%;
         animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;

@@ -6,7 +6,7 @@ import { isVisibleTaskFormSelector } from "features/UI/selectors"
 import { closeModal } from "features/UI/UISlice"
 import { setItem, editItem, setFilterType, setEditableTask } from "features/todo/todoSlice"
 import Modal from "UI/Modal/Modal"
-import FillButton from "UI/Buttons/FillButton"
+import ThemeButton from "UI/Buttons/ThemeButton"
 import TextInput from "UI/Inputs/TextInput"
 import Textarea from "UI/Inputs/Textarea"
 import Paper from "UI/Paper"
@@ -93,12 +93,17 @@ const TaskForm = ({ className }: TaskFormProps) => {
                 )}
               </Field>
               <div className="buttons">
-                <FillButton type="button" onClick={handleSubmit} disabled={hasValidationErrors}>
+                <ThemeButton
+                  kind="fill"
+                  type="button"
+                  onClick={handleSubmit}
+                  disabled={hasValidationErrors}
+                >
                   {editableTask.id ? "Save" : "Add"}
-                </FillButton>
-                <FillButton type="button" onClick={closeModalHandler}>
+                </ThemeButton>
+                <ThemeButton kind="fill" type="button" onClick={closeModalHandler}>
                   Cancel
-                </FillButton>
+                </ThemeButton>
               </div>
             </form>
           )}

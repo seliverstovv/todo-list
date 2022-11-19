@@ -10,7 +10,7 @@ export const getGlobalStyles = ({ colors }: ThemeType) => css`
   }
 
   body {
-    background-color: ${colors.secondary.a};
+    background-color: ${colors.backgrounds.a};
   }
 `
 

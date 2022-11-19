@@ -6,7 +6,7 @@ import { closeModal } from "features/UI/UISlice"
 import Modal from "UI/Modal"
 import Typography from "UI/Typography"
 import Paper from "UI/Paper"
-import BorderButton from "UI/Buttons/BorderButton"
+import ThemeButton from "UI/Buttons/ThemeButton"
 import styles from "./styles"
 
 const RemoveAllConfirm = ({ className }: { className?: string }) => {
@@ -27,12 +27,12 @@ const RemoveAllConfirm = ({ className }: { className?: string }) => {
       <Paper className={className}>
         <Typography className="title">Are you shure?</Typography>
         <div className="buttons">
-          <BorderButton kind="warn" onClick={removeAllHandler}>
+          <ThemeButton kind="warn" onClick={removeAllHandler}>
             Delete
-          </BorderButton>
-          <BorderButton kind="success" onClick={closeModalHandler}>
+          </ThemeButton>
+          <ThemeButton kind="success" onClick={closeModalHandler}>
             Cancel
-          </BorderButton>
+          </ThemeButton>
         </div>
       </Paper>
     </Modal>

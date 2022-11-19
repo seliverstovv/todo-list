@@ -2,35 +2,91 @@ import { ThemeType } from "."
 
 const lightTheme: ThemeType = {
   colors: {
-    primary: {
-      main: "#000000",
-      deep: "#FF00E4",
-      accent: {
-        a: "#FBFF00",
-        b: "#FF0000",
-        c: "#FF9300",
-        d: "#49FF00",
+    elements: {
+      a: "#FFCC80",
+      b: "#FF8080",
+      c: "#809CFF",
+      d: "#CCFF80",
+      e: "#F2F2F2",
+    },
+    backgrounds: {
+      a: "#121212",
+      b: "#1D1D1D",
+      c: "#272727",
+      d: "#363636",
+      e: "#FF8080",
+    },
+    buttons: {
+      default: {
+        base: {
+          color: "#FFFFFF",
+          border: "#809CFF",
+          background: "transparent",
+        },
+        hover: {
+          color: "#FFFFFF",
+          border: "#809CFF",
+          background: "#809CFF",
+        },
+      },
+      warn: {
+        base: {
+          color: "#FFFFFF",
+          border: "#FF8080",
+          background: "transparent",
+        },
+        hover: {
+          color: "#FFFFFF",
+          border: "#FF8080",
+          background: "#FF8080",
+        },
+      },
+      success: {
+        base: {
+          color: "#FFFFFF",
+          border: "#CCFF80",
+          background: "transparent",
+        },
+        hover: {
+          color: "#000000",
+          border: "#CCFF80",
+          background: "#CCFF80",
+        },
+      },
+      fill: {
+        base: {
+          color: "#FFFFFF",
+          border: "#CCFF80",
+          background: "transparent",
+        },
+        hover: {
+          color: "#000000",
+          border: "#CCFF80",
+          background: "#CCFF80",
+        },
       },
     },
-    secondary: {
-      a: "#E3CAA5",
-      b: "#EBD8C3",
-      c: "#F7E9D7",
-      d: "#FFF6EA",
+  },
+  fonts: {
+    sizes: {
+      xs: "0.8rem",
+      s: "1rem",
+      m: "1.2rem",
+      l: "1.4rem",
+      xl: "1.6rem",
+      xxl: "2rem",
+      xxxl: "4rem",
+    },
+    colors: {
+      primary: "#FFFFFF",
+      secondary: "#F2F2F2",
+      hint: "#D5D5D5",
+      error: "#FF8080",
     },
   },
   radius: {
     button: "0.4rem",
     paper: "0.6rem",
-  },
-  fontSizes: {
-    xs: "0.8rem",
-    s: "1rem",
-    m: "1.2rem",
-    l: "1.4rem",
-    xl: "1.6rem",
-    xxl: "2rem",
-    xxxl: "4rem",
   },
 }
 
