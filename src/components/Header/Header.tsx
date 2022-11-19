@@ -5,6 +5,7 @@ import { todoItemsCountsSelector } from "features/todo/selectors"
 import { themeSelector } from "features/UI/selectors"
 import { setTheme } from "features/UI/UISlice"
 import Typography from "UI/Typography"
+import ToggleSwitch from "UI/ToggleSwitch"
 import styles from "./styles"
 
 const Header = ({ className }: { className?: string }) => {
@@ -22,10 +23,15 @@ const Header = ({ className }: { className?: string }) => {
 
   return (
     <header className={className}>
+      <div className="mode">
+        <ToggleSwitch checked={theme === "dark"} onChange={themeChangeHandler} />
+        <Typography className="mode-text" size="m">
+          {theme}
+        </Typography>
+      </div>
       <Typography className="title" tag="h2" size="xxl">
         My Todo List
       </Typography>
-      <input type="checkbox" checked={theme === "dark"} onChange={themeChangeHandler} />
       <Typography tag="h3" size="xl">
         {progressCount} more to do, {doneCount} done
       </Typography>

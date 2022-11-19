@@ -11,11 +11,11 @@ export default () => {
       }
 
       .title {
-        margin-bottom: 2.4rem;
+        margin-bottom: 4rem;
       }
 
       .text-input {
-        margin-bottom: 1.4rem;
+        margin-bottom: 2.4rem;
       }
 
       .textarea {

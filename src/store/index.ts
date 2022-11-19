@@ -13,25 +13,24 @@ import {
   REGISTER,
 } from "redux-persist"
 
-const persistConfig = {
+const todoPersistConfig = {
   key: "todoReducer",
   storage,
-  blacklist: [
-    "todoTitle",
-    "todoDescription",
-    "searchValue",
-    "isVisibleAddTask",
-    "isVisibleRemoveAll",
-    "isLoading",
-    "error",
-  ],
+  blacklist: ["searchValue", "isLoading", "error"],
 }
+const persistedTodoReducer = persistReducer(todoPersistConfig, todoReducer)
 
-const persistedtodoReducer = persistReducer(persistConfig, todoReducer)
+const UIPersistConfig = {
+  key: "UIReducer",
+  storage,
+  // todo resolve nested persist
+  blackList: [""],
+}
+const persistedUIReducer = persistReducer(UIPersistConfig, UIReducer)
 
 const rootReducer = combineReducers({
-  todoReducer: persistedtodoReducer,
-  UIReducer,
+  todoReducer: persistedTodoReducer,
+  UIReducer: persistedUIReducer,
 })
 
 const createStore = () => {

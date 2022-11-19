@@ -11,6 +11,7 @@ export const getGlobalStyles = ({ colors }: ThemeType) => css`
 
   body {
     background-color: ${colors.backgrounds.c};
+    transition: background-color 0.1s ease;
   }
 `
 
