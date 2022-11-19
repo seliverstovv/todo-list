@@ -16,15 +16,14 @@ import {
 const todoPersistConfig = {
   key: "todoReducer",
   storage,
-  blacklist: ["searchValue", "isLoading", "error"],
+  whitelist: ["todoItems", "filterType"],
 }
 const persistedTodoReducer = persistReducer(todoPersistConfig, todoReducer)
 
 const UIPersistConfig = {
   key: "UIReducer",
   storage,
-  // todo resolve nested persist
-  blackList: [""],
+  whitelist: ["theme"],
 }
 const persistedUIReducer = persistReducer(UIPersistConfig, UIReducer)
 
