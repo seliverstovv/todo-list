@@ -1,13 +1,13 @@
 import { css } from "@emotion/react"
 import { ThemeProps } from "UI/_theme"
-import { BorderButtonProps } from "./types"
+import { ButtonProps } from "./types"
 
 export default ({
   theme: { colors },
   isActive,
   isToggle = false,
   kind = "default",
-}: ThemeProps & BorderButtonProps) => {
+}: ThemeProps & ButtonProps) => {
   const isToggleAndActive = isToggle && isActive
   const isActiveNotToggle = isActive && !isToggle
 

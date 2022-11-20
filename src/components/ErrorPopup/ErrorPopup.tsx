@@ -4,7 +4,7 @@ import { AsyncError } from "features/todo/types"
 import Modal from "UI/Modal"
 import Typography from "UI/Typography"
 import Paper from "UI/Paper"
-import ThemeButton from "UI/Buttons/ThemeButton"
+import Button from "UI/Button"
 import styles from "./styles"
 
 const ErrorPopup = ({ error, className }: { error?: AsyncError; className?: string }) => {
@@ -17,9 +17,9 @@ const ErrorPopup = ({ error, className }: { error?: AsyncError; className?: stri
           Service JSON Placeholder is not responding. Looks like you need to manually create the first
           tasks{` ;)`}
         </Typography>
-        <ThemeButton kind="fill" onClick={() => setIsError(false)}>
+        <Button kind="fill" onClick={() => setIsError(false)}>
           Close
-        </ThemeButton>
+        </Button>
       </Paper>
     </Modal>
   )

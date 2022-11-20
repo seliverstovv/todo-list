@@ -3,7 +3,7 @@ import { useAppDispath, useAppSelector } from "store/hooks"
 import { setFilterType } from "features/todo/todoSlice"
 import { filterTypeSelector } from "features/todo/selectors"
 import { FilterTypes } from "features/todo/types"
-import ThemeButton from "UI/Buttons/ThemeButton"
+import Button from "UI/Button"
 import styles from "./styles"
 
 const Filter = ({ className }: { className?: string }) => {
@@ -16,25 +16,25 @@ const Filter = ({ className }: { className?: string }) => {
 
   return (
     <div className={className}>
-      <ThemeButton isActive={filterType === "all"} onClick={() => changeFilterHandler("all")}>
+      <Button isActive={filterType === "all"} onClick={() => changeFilterHandler("all")}>
         All
-      </ThemeButton>
+      </Button>
 
-      <ThemeButton
+      <Button
         isActive={filterType === "important"}
         kind="warn"
         onClick={() => changeFilterHandler("important")}
       >
         Important
-      </ThemeButton>
+      </Button>
 
-      <ThemeButton
+      <Button
         isActive={filterType === "done"}
         kind="success"
         onClick={() => changeFilterHandler("done")}
       >
         Done
-      </ThemeButton>
+      </Button>
     </div>
   )
 }

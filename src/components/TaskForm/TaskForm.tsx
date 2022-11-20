@@ -6,7 +6,7 @@ import { modalSelector } from "features/UI/selectors"
 import { setModal } from "features/UI/UISlice"
 import { setItem, editItem, setFilterType, setEditableTask } from "features/todo/todoSlice"
 import Modal from "UI/Modal/Modal"
-import ThemeButton from "UI/Buttons/ThemeButton"
+import Button from "UI/Button"
 import TextInput from "UI/Inputs/TextInput"
 import Textarea from "UI/Inputs/Textarea"
 import Paper from "UI/Paper"
@@ -97,17 +97,12 @@ const TaskForm = ({ className }: TaskFormProps) => {
                 )}
               </Field>
               <div className="buttons">
-                <ThemeButton
-                  kind="fill"
-                  type="button"
-                  onClick={handleSubmit}
-                  disabled={hasValidationErrors}
-                >
+                <Button kind="fill" type="button" onClick={handleSubmit} disabled={hasValidationErrors}>
                   {editableTask.id ? "Save" : "Add"}
-                </ThemeButton>
-                <ThemeButton kind="fill" type="button" onClick={closeModalHandler}>
+                </Button>
+                <Button kind="fill" type="button" onClick={closeModalHandler}>
                   Cancel
-                </ThemeButton>
+                </Button>
               </div>
             </form>
           )}

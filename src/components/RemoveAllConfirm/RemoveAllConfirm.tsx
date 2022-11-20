@@ -6,7 +6,7 @@ import { setModal } from "features/UI/UISlice"
 import Modal from "UI/Modal"
 import Typography from "UI/Typography"
 import Paper from "UI/Paper"
-import ThemeButton from "UI/Buttons/ThemeButton"
+import Button from "UI/Button"
 import styles from "./styles"
 
 const RemoveAllConfirm = ({ className }: { className?: string }) => {
@@ -27,12 +27,12 @@ const RemoveAllConfirm = ({ className }: { className?: string }) => {
       <Paper className={className}>
         <Typography className="title">Are you shure?</Typography>
         <div className="buttons">
-          <ThemeButton kind="warn" onClick={removeAllHandler}>
+          <Button kind="warn" onClick={removeAllHandler}>
             Delete
-          </ThemeButton>
-          <ThemeButton kind="success" onClick={closeModalHandler}>
+          </Button>
+          <Button kind="success" onClick={closeModalHandler}>
             Cancel
-          </ThemeButton>
+          </Button>
         </div>
       </Paper>
     </Modal>

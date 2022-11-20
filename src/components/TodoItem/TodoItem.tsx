@@ -3,7 +3,7 @@ import { useAppDispath } from "store/hooks"
 import { toggleBooleanField, removeItem, setEditableTask } from "features/todo/todoSlice"
 import { setModal } from "features/UI/UISlice"
 import Typography from "UI/Typography"
-import ThemeButton from "UI/Buttons/ThemeButton"
+import Button from "UI/Button"
 import { ReactComponent as DoneIcon } from "./icons/done.svg"
 import { ReactComponent as ImportantIcon } from "./icons/important.svg"
 import { ReactComponent as DeleteIcon } from "./icons/delete.svg"
@@ -38,14 +38,14 @@ const TodoItem = (props: TodoItemProps) => {
           {title}
         </Typography>
         <span className="buttons">
-          <ThemeButton size="mini" onClick={setEditableHandler}>
+          <Button size="mini" onClick={setEditableHandler}>
             Edit
-          </ThemeButton>
-          <ThemeButton size="mini" isActive={done} kind="success" onClick={onMarkDone} isToggle>
+          </Button>
+          <Button size="mini" isActive={done} kind="success" onClick={onMarkDone} isToggle>
             <DoneIcon />
-          </ThemeButton>
+          </Button>
 
-          <ThemeButton
+          <Button
             isActive={important}
             kind="warn"
             onClick={onMarkImportant}
@@ -54,11 +54,11 @@ const TodoItem = (props: TodoItemProps) => {
             disabled={done}
           >
             <ImportantIcon />
-          </ThemeButton>
+          </Button>
 
-          <ThemeButton kind="warn" size="mini" onClick={onDeleteItem}>
+          <Button kind="warn" size="mini" onClick={onDeleteItem}>
             <DeleteIcon />
-          </ThemeButton>
+          </Button>
         </span>
       </div>
       <Typography className="description" size="xl">

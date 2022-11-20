@@ -2,7 +2,7 @@ import styled from "@emotion/styled"
 import { useAppDispath, useAppSelector } from "store/hooks"
 import { todoItemsCountsSelector } from "features/todo/selectors"
 import { setModal } from "features/UI/UISlice"
-import ThemeButton from "UI/Buttons/ThemeButton"
+import Button from "UI/Button"
 import Typography from "UI/Typography"
 import Filter from "components/Filters"
 import Search from "components/Search"
@@ -34,13 +34,13 @@ const Controls = ({ className }: { className?: string }) => {
         <Typography size="xxxl" tag="h1" className="title">
           Tasks:
         </Typography>
-        <ThemeButton className="add-task" onClick={openAddTaskHandler} kind="success" type="button">
+        <Button className="add-task" onClick={openAddTaskHandler} kind="success" type="button">
           Add task
-        </ThemeButton>
+        </Button>
 
-        <ThemeButton disabled={!totalCount} onClick={openRemoveAllHandler} kind="warn" type="button">
+        <Button disabled={!totalCount} onClick={openRemoveAllHandler} kind="warn" type="button">
           Clear all
-        </ThemeButton>
+        </Button>
       </div>
 
       <TaskForm />

@@ -1,8 +1,8 @@
 import { css } from "@emotion/react"
 import { ThemeProps } from "UI/_theme"
-import { BaseButtonProps } from "UI/Buttons/baseButtonTypes"
+import { ButtonProps } from "./types"
 
-export default ({ theme, direction = "row", size = "large" }: ThemeProps & BaseButtonProps) => {
+export default ({ theme, direction = "row", size = "large" }: ThemeProps & ButtonProps) => {
   const getSizeStyles = () => {
     switch (size) {
       case "mini":
