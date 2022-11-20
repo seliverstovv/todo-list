@@ -3,6 +3,8 @@
 - установить зависимости `yarn` or `npm i`
 - запустить проект `npm start` or `yarn start`
 
+gh-pages: https://seliverstovv.github.io/todo-list/
+
 ### Пример реализации frontend для простого трекера задач
 
 #### Используемые технологии
