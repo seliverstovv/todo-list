@@ -33,8 +33,8 @@ export default ({ theme: { colors } }: ThemeProps & ToggleSwitchProps) => {
 
       .styled {
         border-radius: 50%;
-        width: 2.1rem;
-        height: 2.1rem;
+        width: 1.8rem;
+        height: 1.8rem;
         background-color: ${colors.elements.b};
         transform: translate(-50%, -50%);
         top: 50%;

@@ -2,8 +2,8 @@ import { Form, Field } from "react-final-form"
 import styled from "@emotion/styled"
 import { useAppDispath, useAppSelector } from "store/hooks"
 import { editableTaskSelector } from "features/todo/selectors"
-import { isVisibleTaskFormSelector } from "features/UI/selectors"
-import { closeModal } from "features/UI/UISlice"
+import { modalSelector } from "features/UI/selectors"
+import { setModal } from "features/UI/UISlice"
 import { setItem, editItem, setFilterType, setEditableTask } from "features/todo/todoSlice"
 import Modal from "UI/Modal/Modal"
 import ThemeButton from "UI/Buttons/ThemeButton"
@@ -17,7 +17,7 @@ import styles from "./styles"
 
 const TaskForm = ({ className }: TaskFormProps) => {
   const dispatch = useAppDispath()
-  const isVisibleTaskForm = useAppSelector(isVisibleTaskFormSelector)
+  const modal = useAppSelector(modalSelector)
   const editableTask = useAppSelector(editableTaskSelector)
 
   const getInitialValues = () => ({
@@ -32,7 +32,7 @@ const TaskForm = ({ className }: TaskFormProps) => {
   }
 
   const closeModalHandler = () => {
-    dispatch(closeModal("isVisibleTaskForm"))
+    dispatch(setModal(null))
     resetEditableTask()
   }
 
@@ -59,7 +59,7 @@ const TaskForm = ({ className }: TaskFormProps) => {
   }
 
   return (
-    <Modal isOpened={isVisibleTaskForm} onClose={closeModalHandler} className={className}>
+    <Modal isOpened={modal === "isVisibleTaskForm"} onClose={closeModalHandler} className={className}>
       <Paper className="paper">
         <Typography className="title" size="xxl">
           Add task

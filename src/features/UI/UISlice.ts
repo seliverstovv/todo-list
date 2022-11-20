@@ -3,22 +3,15 @@ import { ModalAction, ThemesType, UIStateType } from "./types"
 
 const initialState: UIStateType = {
   theme: "dark",
-  modals: {
-    isVisibleTaskForm: false,
-    isVisibleRemoveAll: false,
-  },
+  modal: null,
 }
 
 const UISlice = createSlice({
   name: "UISlice",
   initialState,
   reducers: {
-    openModal(state, { payload }: ModalAction) {
-      state.modals[payload] = true
-    },
-
-    closeModal(state, { payload }: ModalAction) {
-      state.modals[payload] = false
+    setModal(state, { payload }: ModalAction) {
+      state.modal = payload
     },
 
     setTheme(state, { payload }: PayloadAction<ThemesType>) {
@@ -27,6 +20,6 @@ const UISlice = createSlice({
   },
 })
 
-export const { openModal, closeModal, setTheme } = UISlice.actions
+export const { setModal, setTheme } = UISlice.actions
 
 export default UISlice.reducer

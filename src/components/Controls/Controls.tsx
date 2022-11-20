@@ -1,7 +1,7 @@
 import styled from "@emotion/styled"
 import { useAppDispath, useAppSelector } from "store/hooks"
 import { todoItemsCountsSelector } from "features/todo/selectors"
-import { openModal } from "features/UI/UISlice"
+import { setModal } from "features/UI/UISlice"
 import ThemeButton from "UI/Buttons/ThemeButton"
 import Typography from "UI/Typography"
 import Filter from "components/Filters"
@@ -15,11 +15,11 @@ const Controls = ({ className }: { className?: string }) => {
   const { totalCount } = useAppSelector(todoItemsCountsSelector)
 
   const openAddTaskHandler = () => {
-    dispatch(openModal("isVisibleTaskForm"))
+    dispatch(setModal("isVisibleTaskForm"))
   }
 
   const openRemoveAllHandler = () => {
-    dispatch(openModal("isVisibleRemoveAll"))
+    dispatch(setModal("isVisibleRemoveAll"))
   }
 
   return (

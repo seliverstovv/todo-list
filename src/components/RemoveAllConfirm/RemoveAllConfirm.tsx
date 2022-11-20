@@ -1,8 +1,8 @@
 import styled from "@emotion/styled"
 import { useAppDispath, useAppSelector } from "store/hooks"
 import { removeAll } from "features/todo/todoSlice"
-import { isVisibleRemoveAllSelector } from "features/UI/selectors"
-import { closeModal } from "features/UI/UISlice"
+import { modalSelector } from "features/UI/selectors"
+import { setModal } from "features/UI/UISlice"
 import Modal from "UI/Modal"
 import Typography from "UI/Typography"
 import Paper from "UI/Paper"
@@ -11,10 +11,10 @@ import styles from "./styles"
 
 const RemoveAllConfirm = ({ className }: { className?: string }) => {
   const dispatch = useAppDispath()
-  const isVisibleRemoveAll = useAppSelector(isVisibleRemoveAllSelector)
+  const modal = useAppSelector(modalSelector)
 
   const closeModalHandler = () => {
-    dispatch(closeModal("isVisibleRemoveAll"))
+    dispatch(setModal(null))
   }
 
   const removeAllHandler = () => {
@@ -23,7 +23,7 @@ const RemoveAllConfirm = ({ className }: { className?: string }) => {
   }
 
   return (
-    <Modal isOpened={isVisibleRemoveAll} onClose={closeModalHandler}>
+    <Modal isOpened={modal === "isVisibleRemoveAll"} onClose={closeModalHandler}>
       <Paper className={className}>
         <Typography className="title">Are you shure?</Typography>
         <div className="buttons">

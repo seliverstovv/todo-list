@@ -2,12 +2,11 @@ import { PayloadAction } from "@reduxjs/toolkit"
 
 export type ThemesType = "dark" | "light"
 
+export type Modals = "isVisibleTaskForm" | "isVisibleRemoveAll"
+
 export type UIStateType = {
   theme: ThemesType
-  modals: {
-    isVisibleTaskForm: boolean
-    isVisibleRemoveAll: boolean
-  }
+  modal: Modals | null
 }
 
-export type ModalAction = PayloadAction<keyof UIStateType["modals"]>
+export type ModalAction = PayloadAction<UIStateType["modal"]>

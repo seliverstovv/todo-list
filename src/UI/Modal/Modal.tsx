@@ -4,12 +4,14 @@ import { useRef } from "react"
 import { Transition } from "react-transition-group"
 import Portal from "UI/Portal"
 import useLockedBody from "UI/_hooks/useLockedBody"
+import useEscapeKey from "UI/_hooks/useEscapeKey"
 import { Animation, Overlay, Content, focusLock } from "./styles"
 import { ModalProps } from "./types"
 
 const AnimateItem = ({ isOpened, onClose, children, className }: ModalProps) => {
   const nodeRef = useRef<HTMLDivElement>(null)
   useLockedBody(isOpened, "root")
+  useEscapeKey(onClose)
 
   return (
     <Transition
@@ -24,7 +26,7 @@ const AnimateItem = ({ isOpened, onClose, children, className }: ModalProps) => 
       {(state) => (
         <Portal>
           <Animation ref={nodeRef} state={state}>
-            <FocusLock css={focusLock}>
+            <FocusLock css={focusLock} returnFocus>
               <Overlay onClick={onClose} />
               <Content className={className}>{children}</Content>
             </FocusLock>
