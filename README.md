@@ -11,7 +11,6 @@ gh-pages: https://seliverstovv.github.io/todo-list/
 - https://www.typescriptlang.org
 - https://reactjs.org/
 - https://redux-toolkit.js.org/
-- https://github.com/axios/axios
 - https://emotion.sh
 
 ##### TODO
