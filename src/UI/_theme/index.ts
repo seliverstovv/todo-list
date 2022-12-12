@@ -14,57 +14,8 @@ const defaultTheme = {
       d: "#363636",
       e: "#FF8080",
     },
-    buttons: {
-      default: {
-        base: {
-          color: "#FFFFFF",
-          border: "#809CFF",
-          background: "transparent",
-        },
-        hover: {
-          color: "#FFFFFF",
-          border: "#809CFF",
-          background: "#809CFF",
-        },
-      },
-      warn: {
-        base: {
-          color: "#FFFFFF",
-          border: "#FF8080",
-          background: "transparent",
-        },
-        hover: {
-          color: "#FFFFFF",
-          border: "#FF8080",
-          background: "#FF8080",
-        },
-      },
-      success: {
-        base: {
-          color: "#FFFFFF",
-          border: "#CCFF80",
-          background: "transparent",
-        },
-        hover: {
-          color: "#000000",
-          border: "#CCFF80",
-          background: "#CCFF80",
-        },
-      },
-      fill: {
-        base: {
-          color: "#F2F2F2",
-          border: "#272727",
-          background: "#272727",
-        },
-        hover: {
-          color: "#F2F2F2",
-          border: "#1D1D1D",
-          background: "#1D1D1D",
-        },
-      },
-    },
   },
+
   fonts: {
     sizes: {
       xs: "0.8rem",
@@ -82,6 +33,61 @@ const defaultTheme = {
       error: "#FF8080",
     },
   },
+
+  buttons: {
+    default: {
+      base: {
+        color: "#FFFFFF",
+        border: "#809CFF",
+        background: "transparent",
+      },
+      hover: {
+        color: "#FFFFFF",
+        border: "#809CFF",
+        background: "#809CFF",
+      },
+    },
+
+    warn: {
+      base: {
+        color: "#FFFFFF",
+        border: "#FF8080",
+        background: "transparent",
+      },
+      hover: {
+        color: "#FFFFFF",
+        border: "#FF8080",
+        background: "#FF8080",
+      },
+    },
+
+    success: {
+      base: {
+        color: "#FFFFFF",
+        border: "#CCFF80",
+        background: "transparent",
+      },
+      hover: {
+        color: "#000000",
+        border: "#CCFF80",
+        background: "#CCFF80",
+      },
+    },
+
+    fill: {
+      base: {
+        color: "#F2F2F2",
+        border: "#272727",
+        background: "#272727",
+      },
+      hover: {
+        color: "#F2F2F2",
+        border: "#1D1D1D",
+        background: "#1D1D1D",
+      },
+    },
+  },
+
   radius: {
     button: "0.4rem",
     paper: "0.6rem",

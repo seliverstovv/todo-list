@@ -7,7 +7,7 @@ export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   onClick?: (e: ButtonClickEventType) => void
   size?: "mini" | "small" | "mid" | "large"
   direction?: "row" | "column"
-  kind?: keyof ThemeType["colors"]["buttons"]
+  kind?: keyof ThemeType["buttons"]
   isActive?: boolean
   isToggle?: boolean
 }

@@ -3,7 +3,7 @@ import { ThemeProps } from "UI/_theme"
 import { ButtonProps } from "./types"
 
 export default ({
-  theme: { colors },
+  theme: { buttons },
   isActive,
   isToggle = false,
   kind = "default",
@@ -12,21 +12,21 @@ export default ({
   const isActiveNotToggle = isActive && !isToggle
 
   const mapBaseStyles = css`
-    color: ${colors.buttons[kind].base.color};
-    border: 0.1rem solid ${colors.buttons[kind].base.border};
-    background-color: ${colors.buttons[kind].base.background};
+    color: ${buttons[kind].base.color};
+    border: 0.1rem solid ${buttons[kind].base.border};
+    background-color: ${buttons[kind].base.background};
     svg {
-      fill: ${colors.buttons[kind].base.color};
+      fill: ${buttons[kind].base.color};
     }
   `
 
   const mapActiveStyles = css`
-    color: ${colors.buttons[kind].hover.color};
-    border: 0.1rem solid ${colors.buttons[kind].hover.border};
-    background-color: ${colors.buttons[kind].hover.background};
+    color: ${buttons[kind].hover.color};
+    border: 0.1rem solid ${buttons[kind].hover.border};
+    background-color: ${buttons[kind].hover.background};
     ${isActiveNotToggle && "pointer-events: none;"}
     svg {
-      fill: ${colors.buttons[kind].hover.color};
+      fill: ${buttons[kind].hover.color};
     }
   `
 
