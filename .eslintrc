@@ -40,6 +40,7 @@
                 "printWidth": 105
             }
         ],
-        "import/extensions": 0
+        "import/extensions": 0,
+        "no-tabs": ["error", {"allowIndentationTabs": true}]
     }
 }

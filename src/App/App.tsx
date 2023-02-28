@@ -17,45 +17,45 @@ import ErrorPopup from "components/ErrorPopup"
 import styles, { getGlobalStyles } from "./styles"
 
 const App = ({ className }: { className?: string }) => {
-  const dispatch = useAppDispath()
-  const { isLoading, error } = useAppSelector(loadingSateSelector)
-  const todoItems = useAppSelector(todoItemsSelector)
-  const theme = useAppSelector(themeSelector)
+    const dispatch = useAppDispath()
+    const { isLoading, error } = useAppSelector(loadingSateSelector)
+    const todoItems = useAppSelector(todoItemsSelector)
+    const theme = useAppSelector(themeSelector)
 
-  const themes = {
-    dark: darkTheme,
-    light: lightTheme,
-  }
-
-  const selectTheme = themes[theme]
-
-  useEffect(() => {
-    // If the sheet is empty -> download test data from the server
-    if (todoItems.length === 0) {
-      dispatch(getTodosThunk())
+    const themes = {
+        dark: darkTheme,
+        light: lightTheme,
     }
-    // the effect only needs to be performed once on first load
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
 
-  return (
-    <ThemeProvider theme={selectTheme}>
-      <Global styles={getGlobalStyles(selectTheme)} />
+    const selectTheme = themes[theme]
 
-      <main className={className}>
-        <Header />
-        <Controls />
-        {(isLoading && (
-          <div className="loading">
-            <Loader />
-          </div>
-        )) || <TodoList />}
-        {error && <ErrorPopup error={error} />}
-      </main>
-    </ThemeProvider>
-  )
+    useEffect(() => {
+        // If the sheet is empty -> download test data from the server
+        if (todoItems.length === 0) {
+            dispatch(getTodosThunk())
+        }
+        // the effect only needs to be performed once on first load
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+
+    return (
+        <ThemeProvider theme={selectTheme}>
+            <Global styles={getGlobalStyles(selectTheme)} />
+
+            <main className={className}>
+                <Header />
+                <Controls />
+                {(isLoading && (
+                    <div className="loading">
+                        <Loader />
+                    </div>
+                )) || <TodoList />}
+                {error && <ErrorPopup error={error} />}
+            </main>
+        </ThemeProvider>
+    )
 }
 
 export default styled(App)`
-  ${styles}
+    ${styles}
 `

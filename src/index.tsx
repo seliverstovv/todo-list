@@ -10,13 +10,13 @@ const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement)
 const { store, persistor } = setupStore()
 
 root.render(
-  <React.StrictMode>
-    <StoreProvider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <App />
-      </PersistGate>
-    </StoreProvider>
-  </React.StrictMode>
+    <React.StrictMode>
+        <StoreProvider store={store}>
+            <PersistGate loading={null} persistor={persistor}>
+                <App />
+            </PersistGate>
+        </StoreProvider>
+    </React.StrictMode>
 )
 
 // If you want to start measuring performance in your app, pass a function

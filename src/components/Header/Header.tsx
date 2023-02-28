@@ -9,36 +9,36 @@ import ToggleSwitch from "UI/ToggleSwitch"
 import styles from "./styles"
 
 const Header = ({ className }: { className?: string }) => {
-  const dispatch = useAppDispath()
-  const { doneCount, progressCount } = useAppSelector(todoItemsCountsSelector)
-  const theme = useAppSelector(themeSelector)
+    const dispatch = useAppDispath()
+    const { doneCount, progressCount } = useAppSelector(todoItemsCountsSelector)
+    const theme = useAppSelector(themeSelector)
 
-  const themeChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.checked) {
-      dispatch(setTheme("dark"))
-    } else {
-      dispatch(setTheme("light"))
+    const themeChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        if (e.target.checked) {
+            dispatch(setTheme("dark"))
+        } else {
+            dispatch(setTheme("light"))
+        }
     }
-  }
 
-  return (
-    <header className={className}>
-      <div className="mode">
-        <ToggleSwitch checked={theme === "dark"} onChange={themeChangeHandler} />
-        <Typography className="mode-text" size="m">
-          {theme}
-        </Typography>
-      </div>
-      <Typography className="title" tag="h2" size="xxl">
-        My Todo List
-      </Typography>
-      <Typography tag="h3" size="xl">
-        {progressCount} more to do, {doneCount} done
-      </Typography>
-    </header>
-  )
+    return (
+        <header className={className}>
+            <div className="mode">
+                <ToggleSwitch checked={theme === "dark"} onChange={themeChangeHandler} />
+                <Typography className="mode-text" size="m">
+                    {theme}
+                </Typography>
+            </div>
+            <Typography className="title" tag="h2" size="xxl">
+                My Todo List
+            </Typography>
+            <Typography tag="h3" size="xl">
+                {progressCount} more to do, {doneCount} done
+            </Typography>
+        </header>
+    )
 }
 
 export default styled(Header)`
-  ${styles}
+    ${styles}
 `

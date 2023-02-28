@@ -16,102 +16,111 @@ import validate, { DESCRIPTION_MAX_LENGTH } from "./validate"
 import styles from "./styles"
 
 const TaskForm = ({ className }: TaskFormProps) => {
-  const dispatch = useAppDispath()
-  const modal = useAppSelector(modalSelector)
-  const editableTask = useAppSelector(editableTaskSelector)
+    const dispatch = useAppDispath()
+    const modal = useAppSelector(modalSelector)
+    const editableTask = useAppSelector(editableTaskSelector)
 
-  const getInitialValues = () => ({
-    title: editableTask.title || "",
-    body: editableTask.body || "",
-  })
+    const getInitialValues = () => ({
+        title: editableTask.title || "",
+        body: editableTask.body || "",
+    })
 
-  const resetEditableTask = () => {
-    if (editableTask.id) {
-      dispatch(setEditableTask(Object.create(null)))
-    }
-  }
-
-  const closeModalHandler = () => {
-    dispatch(setModal(null))
-    resetEditableTask()
-  }
-
-  const submitHandler = (values: TodoFormValues) => {
-    const result = {
-      id: editableTask.id || Date.now(),
-      // mockUserId
-      userId: 1,
-      title: values.title,
-      body: values.body,
-      done: editableTask.done,
-      important: editableTask.important,
+    const resetEditableTask = () => {
+        if (editableTask.id) {
+            dispatch(setEditableTask(Object.create(null)))
+        }
     }
 
-    if (editableTask.id) {
-      dispatch(editItem(result))
-      resetEditableTask()
-    } else {
-      dispatch(setItem(result))
-      dispatch(setFilterType("all"))
+    const closeModalHandler = () => {
+        dispatch(setModal(null))
+        resetEditableTask()
     }
 
-    closeModalHandler()
-  }
+    const submitHandler = (values: TodoFormValues) => {
+        const result = {
+            id: editableTask.id || Date.now(),
+            // mockUserId
+            userId: 1,
+            title: values.title,
+            body: values.body,
+            done: editableTask.done,
+            important: editableTask.important,
+        }
 
-  return (
-    <Modal isOpened={modal === "isVisibleTaskForm"} onClose={closeModalHandler} className={className}>
-      <Paper className="paper">
-        <Typography className="title" size="xxl">
-          Add task
-        </Typography>
-        <Form
-          initialValues={getInitialValues()}
-          onSubmit={submitHandler}
-          validate={(values) => validate(values, getInitialValues())}
-          render={({ handleSubmit, hasValidationErrors }) => (
-            <form>
-              <Field<string> name="title">
-                {({ input, meta }) => (
-                  <TextInput
-                    name={input.name}
-                    label="Title"
-                    value={input.value}
-                    onChange={input.onChange}
-                    error={meta.error && meta.modified && meta.error}
-                    withError
-                    className="text-input"
-                  />
-                )}
-              </Field>
-              <Field<string> name="body">
-                {({ input, meta }) => (
-                  <Textarea
-                    name={input.name}
-                    label="Description"
-                    value={input.value}
-                    onChange={input.onChange}
-                    error={meta.error && meta.modified && meta.error}
-                    maxLength={DESCRIPTION_MAX_LENGTH}
-                    className="textarea"
-                  />
-                )}
-              </Field>
-              <div className="buttons">
-                <Button kind="fill" type="button" onClick={handleSubmit} disabled={hasValidationErrors}>
-                  {editableTask.id ? "Save" : "Add"}
-                </Button>
-                <Button kind="fill" type="button" onClick={closeModalHandler}>
-                  Cancel
-                </Button>
-              </div>
-            </form>
-          )}
-        />
-      </Paper>
-    </Modal>
-  )
+        if (editableTask.id) {
+            dispatch(editItem(result))
+            resetEditableTask()
+        } else {
+            dispatch(setItem(result))
+            dispatch(setFilterType("all"))
+        }
+
+        closeModalHandler()
+    }
+
+    return (
+        <Modal
+            isOpened={modal === "isVisibleTaskForm"}
+            onClose={closeModalHandler}
+            className={className}
+        >
+            <Paper className="paper">
+                <Typography className="title" size="xxl">
+                    Add task
+                </Typography>
+                <Form
+                    initialValues={getInitialValues()}
+                    onSubmit={submitHandler}
+                    validate={(values) => validate(values, getInitialValues())}
+                    render={({ handleSubmit, hasValidationErrors }) => (
+                        <form>
+                            <Field<string> name="title">
+                                {({ input, meta }) => (
+                                    <TextInput
+                                        name={input.name}
+                                        label="Title"
+                                        value={input.value}
+                                        onChange={input.onChange}
+                                        error={meta.error && meta.modified && meta.error}
+                                        withError
+                                        className="text-input"
+                                    />
+                                )}
+                            </Field>
+                            <Field<string> name="body">
+                                {({ input, meta }) => (
+                                    <Textarea
+                                        name={input.name}
+                                        label="Description"
+                                        value={input.value}
+                                        onChange={input.onChange}
+                                        error={meta.error && meta.modified && meta.error}
+                                        maxLength={DESCRIPTION_MAX_LENGTH}
+                                        className="textarea"
+                                    />
+                                )}
+                            </Field>
+                            <div className="buttons">
+                                <Button
+                                    kind="fill"
+                                    type="button"
+                                    onClick={handleSubmit}
+                                    disabled={hasValidationErrors}
+                                >
+                                    {editableTask.id ? "Save" : "Add"}
+                                </Button>
+                                <Button kind="fill" type="button" onClick={closeModalHandler}>
+                                    Cancel
+                                </Button>
+                            </div>
+                        </form>
+                    )}
+                />
+            </Paper>
+        </Modal>
+    )
 }
 
 export default styled(TaskForm)`
-  ${styles}
+    ${styles}
 `

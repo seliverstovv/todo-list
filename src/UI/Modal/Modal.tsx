@@ -9,32 +9,32 @@ import { Animation, Overlay, Content, focusLock } from "./styles"
 import { ModalProps } from "./types"
 
 const AnimateItem = ({ isOpened, onClose, children, className }: ModalProps) => {
-  const nodeRef = useRef<HTMLDivElement>(null)
-  useLockedBody(isOpened, "root")
-  useEscapeKey(onClose)
+    const nodeRef = useRef<HTMLDivElement>(null)
+    useLockedBody(isOpened, "root")
+    useEscapeKey(onClose)
 
-  return (
-    <Transition
-      in={isOpened}
-      timeout={{
-        enter: 0,
-        exit: 300,
-      }}
-      unmountOnExit
-      nodeRef={nodeRef}
-    >
-      {(state) => (
-        <Portal>
-          <Animation ref={nodeRef} state={state}>
-            <FocusLock css={focusLock} returnFocus>
-              <Overlay onClick={onClose} />
-              <Content className={className}>{children}</Content>
-            </FocusLock>
-          </Animation>
-        </Portal>
-      )}
-    </Transition>
-  )
+    return (
+        <Transition
+            in={isOpened}
+            timeout={{
+                enter: 0,
+                exit: 300,
+            }}
+            unmountOnExit
+            nodeRef={nodeRef}
+        >
+            {(state) => (
+                <Portal>
+                    <Animation ref={nodeRef} state={state}>
+                        <FocusLock css={focusLock} returnFocus>
+                            <Overlay onClick={onClose} />
+                            <Content className={className}>{children}</Content>
+                        </FocusLock>
+                    </Animation>
+                </Portal>
+            )}
+        </Transition>
+    )
 }
 
 export default AnimateItem
