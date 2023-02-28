@@ -14,8 +14,6 @@ gh-pages: https://seliverstovv.github.io/todo-list/
 - https://emotion.sh
 
 ##### TODO
-- привести к единому шаблону описание объекта темы
-- добавить transitions для кнопок и инпутов
 - сделать компонент dropDown(select)
 - добавить фильтр "in progress" и перенести выбор фильтра в dropDown
 - настроить PWA
