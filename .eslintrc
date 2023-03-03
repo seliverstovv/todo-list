@@ -37,7 +37,8 @@
         "prettier/prettier": [
             "error", {
                 "semi": false,
-                "printWidth": 105
+                "printWidth": 105,
+                "tabWidth": 4
             }
         ],
         "import/extensions": 0,
